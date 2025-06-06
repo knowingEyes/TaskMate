@@ -16,11 +16,11 @@
     border-radius: 2rem;
 }
 
-@mixin flexDisplay() {
+@mixin flexDisplay($flexDir: column, $align: center, $justify: center) {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 15px;
-    margin-top: 1rem;
-
+    justify-content: $justify;
+    align-items: $align;
+    padding: 1rem;
+    flex-direction: $flexDir;
+    justify-content: $justify;
 }
