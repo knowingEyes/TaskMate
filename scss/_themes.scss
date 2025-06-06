@@ -6,7 +6,7 @@
 
     #landing-header {
         background-color: $primaryHeadBgColor;
-        box-shadow: $box-shadow-main2;
+        box-shadow: $box-shadow-light;
     }
 
 }
@@ -16,7 +16,7 @@
 
     #landing-header {
         background-color: $darkMainHeadBgColor;
-        box-shadow: $box-shadow-main;
+        box-shadow: $box-shadow-bold;
     }
 
 }

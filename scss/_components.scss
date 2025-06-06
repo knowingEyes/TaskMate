@@ -1,4 +1,22 @@
+@use "variables" as *;
+@use "mixins" as *;
 
 .hidden {
-display: none;
+    display: none;
+}
+
+#getStartedBtn {
+    @include button(10px, 7px);
+    margin-top: 1.5rem;
+}
+
+.toggle {
+    @include button(0, 0, unset);
+    .moon {
+        color: $primaryColor;
+
+    }
+    .sun {
+       color: $darkMainColor; 
+    }
 }

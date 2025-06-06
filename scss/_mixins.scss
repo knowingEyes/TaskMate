@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 @mixin bodyTheme($bgColor, $color) {
     background-color: $bgColor;
     color: $color;
@@ -23,4 +25,13 @@
     padding: 1rem;
     flex-direction: $flexDir;
     justify-content: $justify;
+}
+
+@mixin button($padding,$boderRadius,$bgColor:$btnBgColor) {
+ background-color: $bgColor;
+ border: none;
+ color: $btnColor;
+ padding: $padding;
+ border-radius: $boderRadius;
+ cursor: pointer;
 }
