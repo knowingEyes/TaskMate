@@ -1,29 +1,26 @@
- @use "variables";
+@mixin bodyTheme($bgColor, $color) {
+    background-color: $bgColor;
+    color: $color;
+}
 
- @mixin bodyTheme($bgColor, $color) {
-     background-color: $bgcolor;
-     color: $color;
- }
+@mixin headerTheme($bgColor, $color) {
+    background-color: $bgcolor;
+    color: $color;
+}
 
- @mixin headerTheme($bgColor, $color) {
-     background-color: $bgcolor;
-     color: $color;
- }
+@mixin InputTheme($bgColor, $color) {
+    flex: 1;
+    background-color: $bgcolor;
+    color: $color;
+    padding: 10px;
+    border-radius: 2rem;
+}
 
- @mixin InputTheme($bgColor, $color) {
-     flex: 1;
-     background-color: $bgcolor;
-     color: $color;
-     //   border-radius:;
-     padding: 10px;
-     border-radius: 2rem;
- }
+@mixin flexDisplay() {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-top: 1rem;
 
- @mixin flexDisplay() {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     padding-bottom: 15px;
-     margin-top: 1rem;
-
- }
+}

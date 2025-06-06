@@ -1,0 +1,22 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+.light {
+    @include bodyTheme($primaryBgColor, $primaryColor);
+
+    #landing-header {
+        background-color: $primaryHeadBgColor;
+        box-shadow: $box-shadow-main2;
+    }
+
+}
+
+.dark {
+    @include bodyTheme($darkMainBgColor, $darkMainColor);
+
+    #landing-header {
+        background-color: $darkMainHeadBgColor;
+        box-shadow: $box-shadow-main;
+    }
+
+}
