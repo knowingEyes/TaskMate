@@ -14,15 +14,19 @@ body {
 }
 
 header {
-    @include flexDisplay(row, center, space-between)
+    @include flexDisplay(row, center, space-between);
 }
 
 .hero {
-    @include flexDisplay()
+    @include flexDisplay();
+   h1,h2,h4,p,figcaption {
+        text-align: center;
+    }
 }
 
 img {
     margin: 0 auto;
     display: block;
+    width: 70%;
 
 }
