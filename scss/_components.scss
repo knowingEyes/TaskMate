@@ -11,12 +11,23 @@
 }
 
 .toggle {
-    @include button(0, 0, unset);
+    @include button(0, 0, fit-content);
+
     .moon {
         color: $primaryColor;
 
     }
+
     .sun {
-       color: $darkMainColor; 
+        color: $darkMainColor;
     }
+}
+
+#customBtn {
+   @include flexDisplay;
+   @include button(11px, 50%);
+   position: absolute;
+   right: 0;
+   bottom: 0;
+
 }
