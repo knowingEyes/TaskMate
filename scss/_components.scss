@@ -36,3 +36,7 @@
     @include button($spacingSm, $boderRadiusmMd);
     padding-inline: $paddingInline;
 }
+
+.fadeOut {
+ @include fade-out
+}

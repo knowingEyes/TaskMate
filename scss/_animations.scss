@@ -1,23 +1,22 @@
-@keyframes rotate {
-    form {
-        transform: rotate(0);
-    }
-
-    to {
-        transform: rotate(180deg);
-    }
-}
 
 @keyframes fade-out {
     from {
         opacity: 1;
-        transform: translate(0);
-        visibility: visible;
+       
     }
 
     to {
         opacity: 0;
-        transform: translate(100%);
-        visibility: none;
+      
     }
 }
+
+// @keyframes rotate {
+//     form {
+//         transform: rotate(0);
+//     }
+
+//     to {
+//         transform: rotate(180deg);
+//     }
+// }

@@ -1,6 +1,10 @@
 @use "mixins" as *;
 @use "variables" as *;
 
+#landingPage{
+position: absolute;
+z-index: 1;
+width: 100%;
 .hero {
     @include flexDisplay();
 
@@ -16,4 +20,5 @@
     figure {
         margin-top: $spacingLg;
     }
+}
 }

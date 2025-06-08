@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "animations" as *;
 
 @mixin bodyTheme($bgColor, $color) {
     background-color: $bgColor;
@@ -34,4 +35,8 @@
     border-radius: $boderRadius;
     cursor: pointer;
 
+}
+
+@mixin fade-out() {
+animation: fade-out 1s ease-out ;
 }
