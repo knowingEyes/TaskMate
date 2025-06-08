@@ -11,7 +11,7 @@
 }
 
 .toggle {
-    @include button(0, 0, fit-content);
+    @include button(0, 0, unset);
 
     .moon {
         color: $primaryColor;

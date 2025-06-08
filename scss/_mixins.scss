@@ -5,7 +5,7 @@
     color: $color;
 }
 
-@mixin headerTheme($bgColor, $boxShadow,$border-radius : $borderBottomRadius) {
+@mixin headerTheme($bgColor, $boxShadow, $border-radius : $borderBottomRadius) {
     background-color: $bgColor;
     box-shadow: $boxShadow;
     border-radius: $border-radius;
@@ -14,7 +14,7 @@
 @mixin InputTheme($bgColor, $color) {
     background-color: $bgColor;
     color: $color;
-    
+
 }
 
 @mixin flexDisplay($flexDir: column, $align: center, $justify: center) {
@@ -26,12 +26,12 @@
     justify-content: $justify;
 }
 
-@mixin button($padding,$boderRadius,$bgColor:$btnBgColor) {
- background-color: $bgColor;
- border: none;
- color: $btnColor;
- padding: $padding;
- border-radius: $boderRadius;
- cursor: pointer;
+@mixin button($padding, $boderRadius, $bgColor: $btnBgColor) {
+    background-color: $bgColor;
+    border: none;
+    color: $btnColor;
+    padding: $padding;
+    border-radius: $boderRadius;
+    cursor: pointer;
 
 }

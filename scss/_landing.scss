@@ -1,16 +1,19 @@
 @use "mixins" as *;
+@use "variables" as *;
+
 .hero {
     @include flexDisplay();
+
     #title {
         margin-top: 5rem;
         font-size: 2rem;
     }
+
     #subtitle {
         margin-top: 1rem;
     }
 
-   h1,h2,h4,p,figcaption {
-        text-align: center;
-        
+    figure {
+        margin-top: $spacingLg;
     }
 }
