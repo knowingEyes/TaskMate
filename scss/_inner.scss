@@ -1,0 +1,15 @@
+@use "mixins" as *;
+
+
+#innerPage {
+    position: relative;
+    height: 100vh;
+#promptIllustration {
+    position: absolute;
+    margin:auto;
+    height: max-content;
+    inset: 0 0 0 0;
+   
+    
+}
+}

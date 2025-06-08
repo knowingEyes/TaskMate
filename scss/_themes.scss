@@ -1,22 +1,45 @@
 @use "mixins" as *;
 @use "variables" as *;
 
-.light {
-    @include bodyTheme($primaryBgColor, $primaryColor);
+#landingPage {
 
-    #landing-header {
-        background-color: $primaryHeadBgColor;
-        box-shadow: $box-shadow-light;
+    &.light {
+        @include bodyTheme($primaryBgColor, $primaryColor);
+
+        #landing-header {
+
+            @include headerTheme($primaryHeadBgColor, $boxShadowLight)
+        }
+
     }
 
+    &.dark {
+        @include bodyTheme($darkMainBgColor, $darkMainColor);
+
+        #landing-header {
+            @include headerTheme($darkMainHeadBgColor, $boxShadowDark)
+        }
+
+    }
 }
 
-.dark {
-    @include bodyTheme($darkMainBgColor, $darkMainColor);
+#innerPage {
 
-    #landing-header {
-        background-color: $darkMainHeadBgColor;
-        box-shadow: $box-shadow-bold;
+    &.light {
+        @include bodyTheme($lightInnerBgColor, $lightInnerColor);
+
+        #inner-header {
+            @include headerTheme(inherit, $boxShadowLight)
+        }
+
     }
 
+    &.dark {
+        @include bodyTheme($darkInnerBgColor, $darkInnerColor);
+
+        #inner-header {
+            @include headerTheme(inherit, $boxShadowDark) // box-shadow: $boxShadowDark;
+        }
+
+    }
 }

@@ -5,9 +5,10 @@
     color: $color;
 }
 
-@mixin headerTheme($bgColor, $color) {
-    background-color: $bgcolor;
-    color: $color;
+@mixin headerTheme($bgColor, $boxShadow,$border-radius : $borderBottomRadius) {
+    background-color: $bgColor;
+    box-shadow: $boxShadow;
+    border-radius: $border-radius;
 }
 
 @mixin InputTheme($bgColor, $color) {

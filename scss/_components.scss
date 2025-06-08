@@ -25,7 +25,7 @@
 
 #customBtn {
    @include flexDisplay;
-   @include button(11px, 50%);
+   @include button(11px, $bordeRadiusRound);
    position: absolute;
    right: 0;
    bottom: 0;
