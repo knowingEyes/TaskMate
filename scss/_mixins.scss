@@ -12,11 +12,9 @@
 }
 
 @mixin InputTheme($bgColor, $color) {
-    flex: 1;
-    background-color: $bgcolor;
+    background-color: $bgColor;
     color: $color;
-    padding: 10px;
-    border-radius: 2rem;
+    
 }
 
 @mixin flexDisplay($flexDir: column, $align: center, $justify: center) {
@@ -35,4 +33,5 @@
  padding: $padding;
  border-radius: $boderRadius;
  cursor: pointer;
+
 }

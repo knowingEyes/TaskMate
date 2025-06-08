@@ -32,14 +32,21 @@
             @include headerTheme(inherit, $boxShadowLight)
         }
 
+        input {
+            @include InputTheme($lightInputBg, $lightInnerColor);
+        }
     }
 
     &.dark {
         @include bodyTheme($darkInnerBgColor, $darkInnerColor);
 
         #inner-header {
-            @include headerTheme(inherit, $boxShadowDark) // box-shadow: $boxShadowDark;
+            @include headerTheme(inherit, $boxShadowDark)
         }
 
+        input {
+            @include InputTheme($darkInputBg, $darkInputColor);
+
+        }
     }
 }

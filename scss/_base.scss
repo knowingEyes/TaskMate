@@ -23,5 +23,7 @@ img {
     margin: 0 auto;
     display: block;
     width: 70%;
+    object-fit: cover;
+    max-width: 500px;
 
 }

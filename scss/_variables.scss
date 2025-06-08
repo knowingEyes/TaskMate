@@ -17,11 +17,19 @@ $lightInnerColor: #0f172a;
 $lightInnerBgColor :#d0e7ff;
 $lightInnerHeadBgColor : #b3d1ff;
 
-$paddingInline : 1rem;
+$paddingInline : 1.3rem;
+$spacingSm :10px;
+$spacingLg: 2rem;
+
 
 $borderBottomRadius :0 0 1rem 1rem;
 $bordeRadiusRound : 50%;
-$boderRadiusdmedium: 2rem;
+$boderRadiusmMd: 2rem;
 $margiTop : 2rem;
 $boxShadowDark: 0 4px 8px rgb(0, 0, 0, 0.36);
 $boxShadowLight: 0 4px 8px rgb(0, 0, 0, 0.1);
+
+$lightInputBg :#fff;
+$darkInputBg:#1e293b;
+$darkInputColor: #f8fafc;
+$lightInputColor:#0f172a;

@@ -1,15 +1,37 @@
 @use "mixins" as *;
+@use "variables" as *;
 
 
 #innerPage {
-    position: relative;
-    height: 100vh;
-#promptIllustration {
     position: absolute;
-    margin:auto;
-    height: max-content;
-    inset: 0 0 0 0;
-   
-    
-}
+    width: 100%;
+    height: 100vh;
+
+    #addTaskForm {
+        margin-top: $spacingLg;
+        @include flexDisplay(row, center, space-between);
+
+        input {
+            padding: $spacingSm;
+            border-radius: 2rem;
+            border: none;
+            flex: 1;
+            margin-inline-end: $spacingSm;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+    }
+
+    #promptIllustration {
+        position: absolute;
+        margin: auto;
+        height: max-content;
+        inset: 0 0 0 0;
+
+
+
+    }
 }

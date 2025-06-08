@@ -24,10 +24,15 @@
 }
 
 #customBtn {
-   @include flexDisplay;
-   @include button(11px, $bordeRadiusRound);
-   position: absolute;
-   right: 0;
-   bottom: 0;
+    @include flexDisplay;
+    @include button(11px, $bordeRadiusRound);
+    position: absolute;
+    right: 1rem;
+    bottom: 3rem;
 
+}
+
+#addTaskBtn {
+    @include button($spacingSm, $boderRadiusmMd);
+    padding-inline: $paddingInline;
 }
