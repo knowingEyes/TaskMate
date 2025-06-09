@@ -35,4 +35,7 @@
 
 
     }
+    li {
+     @include flexDisplay("row",center,space-between)
+}
 }
