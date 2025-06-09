@@ -12,6 +12,9 @@
 
 .toggle {
     @include button(0, 0, unset);
+    &:focus {
+        outline: none;
+    }
 
     .moon {
         color: $primaryColor;

@@ -6,16 +6,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
+    transition: background-color .6s ease-in-out, box-shadow .6s ease-in-out, color .6s ease-in-out;
 }
 
 body {
     width: 100%;
     height: 100vh;
     position: relative;
+
 }
 
 header {
     @include flexDisplay(row, center, space-between);
+    width: 100%;
 }
 
 
