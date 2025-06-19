@@ -1,41 +1,106 @@
 @use "mixins" as *;
 @use "variables" as *;
+@use "components" as *;
+
 
 
 #innerPage {
     position: absolute;
     width: 100%;
     height: 100vh;
-    
-
-    #addTaskForm {
-        margin-top: $spacingLg;
-        @include flexDisplay(row, center, space-between);
-
+ form {
+    @extend .form;
         input {
-            padding: $spacingSm;
-            border-radius: 2rem;
-            border: none;
-            flex: 1;
-            margin-inline-end: $spacingSm;
+        @extend .input;
+    }
+ }
 
-            &:focus {
-                outline: none;
+
+}
+
+#promptIllustration {
+    position: absolute;
+    margin: auto;
+    height: max-content;
+    inset: 0 0 0 0;
+}
+
+ul {
+
+   li {
+      border-bottom: 1px solid grey;
+       display: block;
+     .listItemCon {
+        position: relative;
+        @include flexDisplay("row", center, space-between);
+        
+     .checkInput {
+            transform: scale(1.5);
+            margin-right: 10px;
+
+            &:checked+label {
+                text-decoration: line-through;
+                color: grey;
             }
         }
 
+        button {
+            border: none;
+            background: none;
+            color: azure;
+            padding: 5px;
+
+        }
+
+        label {
+            font-size: 17px;
+
+            &::first-letter {
+                text-transform: uppercase;
+            }
+        }
+
+        .doneBtn {
+            background-color: black;
+        }
+      .itemsCon {
+        flex: 1;
+        padding-inline-start: 10px;
+      }
+
     }
-
-    #promptIllustration {
-        position: absolute;
-        margin: auto;
-        height: max-content;
-        inset: 0 0 0 0;
-
-
-
-    }
-    li {
-     @include flexDisplay("row",center,space-between)
 }
+}
+#editPanel {
+
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+}
+
+// #taskPanel{
+// //    @include flexDisplay(row, center, space-between); 
+// //    position: fixed;
+// //    bottom: 0%;
+// //    width: 100%;
+// //    backdrop-filter: blur(5px);
+// //    background-color: rgb(121, 20, 20);
+// // }
+
+
+#nav {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    @include flexDisplay(row, center, space-between);
+    background-color: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    height: 65px;
+
+}
+
+.gray-background-class{
+   backdrop-filter: blur(15px);
 }

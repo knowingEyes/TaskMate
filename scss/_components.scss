@@ -1,24 +1,23 @@
 @use "variables" as *;
 @use "mixins" as *;
 
+
 .hidden {
     display: none;
 }
 
-#getStartedBtn {
-    @include button(10px, 7px);
-    margin-top: 1.5rem;
-}
 
 .toggle {
     @include button(0, 0, unset);
+
     &:focus {
         outline: none;
     }
 
     .moon {
-        color: $primaryColor;
 
+
+        color: $primaryColor;
     }
 
     .sun {
@@ -26,12 +25,37 @@
     }
 }
 
+.fadeOut {
+    @include fade-out
+}
+
+.position {
+    position: absolute;
+    z-index: 3;
+}
+
+.input {
+    padding: $spacingSm;
+    border-radius: 2rem;
+    border: none;
+    flex: 1;
+    margin-inline-end: $spacingSm;
+
+    &:focus {
+        outline: none;
+    }
+}
+.form {
+    margin-top: $spacingLg;
+    @include flexDisplay(row, center, space-between);
+}
+
 #customBtn {
     @include flexDisplay;
     @include button(11px, $bordeRadiusRound);
-    position: absolute;
+    position: fixed;
     right: 1rem;
-    bottom: 3rem;
+    bottom: 5rem;
 
 }
 
@@ -40,6 +64,17 @@
     padding-inline: $paddingInline;
 }
 
-.fadeOut {
- @include fade-out
+button[data-btn] {
+    @include button(0, 0, unset);
+
 }
+
+#getStartedBtn {
+    @include button(10px, 7px);
+    margin-top: 1.5rem;
+}
+
+#cancelBtn {
+    @include button(0, 0, unset);
+}
+

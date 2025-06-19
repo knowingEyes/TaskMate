@@ -28,7 +28,7 @@
     &.light {
         @include bodyTheme($lightInnerBgColor, $lightInnerColor);
 
-        #inner-header {
+        .inner-header {
             @include headerTheme(inherit, $boxShadowLight)
         }
 
@@ -40,8 +40,9 @@
     &.dark {
         @include bodyTheme($darkInnerBgColor, $darkInnerColor);
 
-        #inner-header {
-            @include headerTheme(inherit, $boxShadowDark)
+        .inner-header {
+            @include headerTheme(inherit, $boxShadowDark);
+            
         }
 
         input {
@@ -49,4 +50,5 @@
 
         }
     }
+
 }
