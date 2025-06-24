@@ -2,41 +2,39 @@
 @use "animations" as *;
 
 @mixin bodyTheme($bgColor, $color) {
-    background-color: $bgColor;
-    color: $color;
+  background-color: $bgColor;
+  color: $color;
 }
 
-@mixin headerTheme($bgColor, $boxShadow, $border-radius : $borderBottomRadius) {
-    background-color: $bgColor;
-    box-shadow: $boxShadow;
-    border-radius: $border-radius;
+@mixin headerTheme($bgColor, $boxShadow, $border-radius: $borderBottomRadius) {
+  background-color: $bgColor;
+  box-shadow: $boxShadow;
+  border-radius: $border-radius;
 }
 
 @mixin InputTheme($bgColor, $color) {
-    background-color: $bgColor;
-    color: $color;
-
+  background-color: $bgColor;
+  color: $color;
 }
 
 @mixin flexDisplay($flexDir: column, $align: center, $justify: center) {
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
-    padding: 1rem;
-    flex-direction: $flexDir;
-    justify-content: $justify;
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  padding: 1rem;
+  flex-direction: $flexDir;
+  justify-content: $justify;
 }
 
 @mixin button($padding, $boderRadius, $bgColor: $btnBgColor) {
-    background-color: $bgColor;
-    border: none;
-    color: $btnColor;
-    padding: $padding;
-    border-radius: $boderRadius;
-    cursor: pointer;
-
+  background-color: $bgColor;
+  border: none;
+  color: $btnColor;
+  padding: $padding;
+  border-radius: $boderRadius;
+  cursor: pointer;
 }
 
 @mixin fade-out() {
-animation: fade-out 1s ease-out ;
+  animation: fade-out 0.5s ease-out;
 }

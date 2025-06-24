@@ -1,80 +1,95 @@
 @use "variables" as *;
 @use "mixins" as *;
 
-
 .hidden {
-    display: none;
+  display: none;
 }
 
+.active {
+  display: block;
+}
 
 .toggle {
-    @include button(0, 0, unset);
+  @include button(0, 0, unset);
 
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 
-    .moon {
+  .moon {
+    color: $primaryColor;
+  }
 
-
-        color: $primaryColor;
-    }
-
-    .sun {
-        color: $darkMainColor;
-    }
+  .sun {
+    color: $darkMainColor;
+  }
 }
 
 .fadeOut {
-    @include fade-out
+  @include fade-out;
 }
 
 .position {
-    position: absolute;
-    z-index: 3;
+  position: absolute;
+  z-index: 999;
 }
 
 .input {
-    padding: $spacingSm;
-    border-radius: 2rem;
-    border: none;
-    flex: 1;
-    margin-inline-end: $spacingSm;
+  padding: $spacingSm;
+  border-radius: $boderRadiusSm;
+  border: none;
+  flex: 1;
+  margin-inline-end: $spacingSm;
+  font-size: 16px;
+  &:focus {
+    outline: none;
+    border: 1px solid rgba(59, 130, 246, 0.4);
 
-    &:focus {
-        outline: none;
-    }
+  }
 }
+
 .form {
-    margin-top: $spacingLg;
-    @include flexDisplay(row, center, space-between);
+  margin-top: $spacingLg;
+  @include flexDisplay(row, center, space-between);
 }
 
 #customBtn {
-    @include flexDisplay;
-    @include button(11px, $bordeRadiusRound);
-    position: fixed;
-    right: 1rem;
-    bottom: 5rem;
-
+  @include flexDisplay;
+  @include button($spacingMd, $bordeRadiusRound);
+  position: fixed;
+  right: 1rem;
+  bottom: 5rem;
 }
 
 #addTaskBtn {
-    @include button($spacingSm, $boderRadiusmMd);
-    padding-inline: $paddingInline;
-}
-
-button[data-btn] {
-    @include button(0, 0, unset);
-
+  @include button($spacingSm, $boderRadiusSm);
+  padding-inline: $paddingInline;
+  font-size: 16px;
 }
 
 #getStartedBtn {
-    @include button(10px, 7px);
-    margin-top: 1.5rem;
+  @include button(10px, $boderRadiusSm);
+  margin-top: 1.5rem;
 }
 
 #cancelBtn {
-    @include button(0, 0, unset);
+  @include button(0, 0, unset);
 }
 
+.doneBtn {
+  @include button(5px, 8px, $btnBgColor);
+  font-size: 12px;
+  padding-inline: 10px;
+}
+.editBtn,
+.delBtn {
+  background: none;
+  color: azure;
+  @include button(5px, 0, none);
+}
+
+#customBtn,#addTaskBtn,#getStartedBtn {
+  &:active {
+    transform: scale(1.02);
+  }
+}

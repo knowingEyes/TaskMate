@@ -2,105 +2,111 @@
 @use "variables" as *;
 @use "components" as *;
 
-
-
 #innerPage {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  div[data-role] {
     position: absolute;
+    right: 0;
     width: 100%;
     height: 100vh;
- form {
+  }
+
+  form {
     @extend .form;
-        input {
-        @extend .input;
+
+    input {
+      @extend .input;
     }
- }
-
-
+  }
 }
 
-#promptIllustration {
-    position: absolute;
-    margin: auto;
-    height: max-content;
-    inset: 0 0 0 0;
+.promptIllustration {
+  position: absolute;
+  margin: auto;
+  height: max-content;
+  inset: 0 0 0 0;
 }
 
 ul {
-
-   li {
-      border-bottom: 1px solid grey;
-       display: block;
-     .listItemCon {
-        position: relative;
-        @include flexDisplay("row", center, space-between);
-        
-     .checkInput {
-            transform: scale(1.5);
-            margin-right: 10px;
-
-            &:checked+label {
-                text-decoration: line-through;
-                color: grey;
-            }
-        }
-
-        button {
-            border: none;
-            background: none;
-            color: azure;
-            padding: 5px;
-
-        }
-
-        label {
-            font-size: 17px;
-
-            &::first-letter {
-                text-transform: uppercase;
-            }
-        }
-
-        .doneBtn {
-            background-color: black;
-        }
+  li {
+    display: block;
+    .listItemCon {
+      @include flexDisplay("row", center, space-between);
       .itemsCon {
-        flex: 1;
-        padding-inline-start: 10px;
-      }
+        column-gap: 0.3rem;
+        display: flex;
+        align-items: center;
+        .listItem {
+          font-size: 16px;
+        }
 
+        .customCheckCon {
+          display: inline-block;
+          position: relative;
+          width: 1.4rem;
+          height: 1.4rem;
+          .checkInput {
+            width: 1.1rem;
+            height: 1.1rem;
+            opacity: 0;
+            cursor: pointer;
+            position: absolute;
+            z-index: 1;
+          }
+          .checkInput:checked + .check {
+            background-color: $btnBgColor;
+            border:none;
+            &::after {
+              opacity: 1;
+            }
+          }
+          .checkInput:checked + .listItem {
+            text-decoration: line-through;
+          }
+          .check {
+            position: absolute;
+            z-index: 0;
+            width: 20px;
+            height: 20px;
+            left: 0;
+            bottom: 2px;
+            border-radius: 50%;
+            border: 1px solid #94a3b8;
+            transition: all 0.25s ease-in-out;
+            &::after {
+              position: absolute;
+              width: 6px;
+              height: 12px;
+              border: 2px solid #fff;
+              content: "";
+              border-width: 0 2px 2px 0;
+              transform: rotate(45deg);
+              top: 2.5px;
+              left: 7px;
+              opacity: 0;
+            }
+          }
+        }
+      }
     }
-}
+  }
 }
 #editPanel {
-
-    backdrop-filter: blur(5px);
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    z-index: 1;
+  backdrop-filter: blur(5px);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: 3;
 }
-
-// #taskPanel{
-// //    @include flexDisplay(row, center, space-between); 
-// //    position: fixed;
-// //    bottom: 0%;
-// //    width: 100%;
-// //    backdrop-filter: blur(5px);
-// //    background-color: rgb(121, 20, 20);
-// // }
-
 
 #nav {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    @include flexDisplay(row, center, space-between);
-    background-color: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(16px);
-    height: 65px;
-
-}
-
-.gray-background-class{
-   backdrop-filter: blur(15px);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  backdrop-filter: blur(8px);
+  height: 65px;
+  @include flexDisplay(row, center, space-between);
 }

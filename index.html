@@ -63,12 +63,11 @@
   <!-- landing-page section End -->
 
   <!-- innerpage-section start -->
-  <section id="innerPage" class="light">
+  <section id="innerPage" class="light hidden">
     <div id="editPanel" class="hidden"></div>
-    <div data-role="task" style="height: 100vh;">
-
+    <div data-role="task">
       <header class="inner-header">
-        <h1>My Task</h1>
+        <h1>All Tasks</h1>
         <button class="toggle"><svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke-width="1.5" stroke="currentColor" class="size-6 moon hidden">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -82,12 +81,12 @@
 
       </header>
       <div id="addTaskContainer" class="light">
-        <form id="addTaskForm"><input type="text" placeholder="Add a Task..." name="taskInput" autocapitalize="on"
-            autocorrect="on" autocomplete="on" ><button id="addTaskBtn">Add</button></form>
+        <form id="addTaskForm"><input type="text" placeholder="Add a Task..." name="taskInput" id ="taskInput"
+          inputmode="text" autocomplete="off" spellcheck="false"/><button id="addTaskBtn">Add</button></form>
       </div>
 
-      <ul id="pendingTasks"></ul>
-      <div id="promptIllustration">
+      <ul id="pendingTasks" data-ul="one"></ul>
+      <div class="promptIllustration " data-illustration="one">
         <figure>
           <img src="assets/images/Fitz - Meditating at Home.png" alt="blush-illustration">
           <figcaption style="text-align: center;">Start your day with purpose, tap <br>the + button below to add your
@@ -100,34 +99,58 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
       </button>
-
-
     </div>
-    <div id="completedTasksection" data-role="completed" style="height: 100vh;" class="hidden">
+    <!-- completed section -->
+    <div id="completedTasksection" data-role="completed" class="hidden">
       <header class="inner-header">
-        <h2>completed Task(s)</h2>
+        <h2>Completed Tasks</h2>
       </header>
-      <ul id=completedT></ul>
+      <ul id=completedT data-ul="second"></ul>
+      <div class="promptIllustration " data-illustration="second">
+        <figure>
+          <img src="assets/images/Fitz - Rec Center.png" alt="blush-illustration">
+          <figcaption style="text-align: center;">Looks like you havent checked off any <br> tasks Once you
+            complete a task, it'll show up here</figcaption>
+        </figure>
+      </div>
     </div>
+    <!-- search section -->
     <div data-role="search" class="hidden" id="searchsec">
-      <header class="inner-header"><h2>Search</h2></header>
-     <form action="" id="searchForTasksForm"><input type="search" id="searchInput" name="search" placeholder="Search"> <div class="btn"><button id="cancelBtn" class="hidden">Cancel</button></div></form>
-      <ul id="searchResults"></ul>
+      <header class="inner-header">
+        <h2>Search Results</h2>
+      </header>
+      <form action="" id="searchForTasksForm"><input type="search" id="searchInput" name="search" placeholder="Search">
+        <div class="btn"><button id="cancelBtn" class="hidden">Cancel</button></div>
+      </form>
+      <ul id="searchResults" data-ul="third"></ul>
+      <div class="promptIllustration " data-illustration="third">
+        <figure id="emptySearchInputPng">
+          <img src="assets/images/undraw_searching_no1g.svg" alt="undraw-illustration;">
+          <figcaption style="text-align: center;">Looking for something? start typing<br>to search your task.
+            Let's help you find it.</figcaption>
+        </figure>
+        <figure class="hidden" id="noSearchResultsPng">
+          <img src="assets/images/undraw_not-found_6bgl.svg" alt="undraw-illustration">
+          <figcaption style="text-align: center;">Hmm... nothing matches<span id="inputValueDisplay"></span><br>
+            Try checking your spelling or searching<br> with a diffrent keyboard.</figcaption>
+        </figure>
+      </div>
     </div>
-    <div id="nav"><button class="border-bottom" href="#" data-btn="task"><svg xmlns="http://www.w3.org/2000/svg"
+    <!-- Bottom nav -->
+    <div id="nav"><button class="activeSec"  data-btn="task"><svg xmlns="http://www.w3.org/2000/svg"
           width="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
         </svg>
         <P>All Tasks</P>
-      </button><button id="completedTask" href="#" data-btn="completed"><svg width="20"
+      </button><button id="completedTask"  data-btn="completed"><svg width="20"
           xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
           class="size-6">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
         <p>Completed</p>
-      </button> <button id="searchTask" href="#" data-btn="search"><svg width="20" xmlns="http://www.w3.org/2000/svg"
+      </button> <button id="searchTask"  data-btn="search"><svg width="20" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20" fill="currentColor" class="size-5">
           <path fill-rule="evenodd"
             d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z"

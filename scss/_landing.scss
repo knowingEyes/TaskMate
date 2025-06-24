@@ -1,24 +1,24 @@
 @use "mixins" as *;
 @use "variables" as *;
 
-#landingPage{
-position: absolute;
-z-index: 1;
-width: 100%;
-.hero {
+#landingPage {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  .hero {
     @include flexDisplay();
 
     #title {
-        margin-top: 5rem;
-        font-size: 2rem;
+      margin-top: 5rem;
+      font-size: 2rem;
     }
 
     #subtitle {
-        margin-top: 1rem;
+      margin-top: 1rem;
     }
 
     figure {
-        margin-top: $spacingLg;
+      margin-top: $spacingLg;
     }
-}
+  }
 }

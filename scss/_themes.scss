@@ -2,53 +2,126 @@
 @use "variables" as *;
 
 #landingPage {
+  &.light {
+    @include bodyTheme($primaryBgColor, $primaryColor);
 
-    &.light {
-        @include bodyTheme($primaryBgColor, $primaryColor);
-
-        #landing-header {
-
-            @include headerTheme($primaryHeadBgColor, $boxShadowLight)
-        }
-
+    #landing-header {
+      @include headerTheme($primaryHeadBgColor, $boxShadowLight);
     }
+  }
 
-    &.dark {
-        @include bodyTheme($darkMainBgColor, $darkMainColor);
+  &.dark {
+    @include bodyTheme($darkMainBgColor, $darkMainColor);
 
-        #landing-header {
-            @include headerTheme($darkMainHeadBgColor, $boxShadowDark)
-        }
-
+    #landing-header {
+      @include headerTheme($darkMainHeadBgColor, $boxShadowDark);
     }
+  }
 }
 
 #innerPage {
+  &.light {
+    @include bodyTheme($lightInnerBgColor, $lightInnerColor);
 
-    &.light {
-        @include bodyTheme($lightInnerBgColor, $lightInnerColor);
-
-        .inner-header {
-            @include headerTheme(inherit, $boxShadowLight)
-        }
-
-        input {
-            @include InputTheme($lightInputBg, $lightInnerColor);
-        }
+    .inner-header {
+      @include headerTheme(inherit, $boxShadowLight);
     }
 
-    &.dark {
-        @include bodyTheme($darkInnerBgColor, $darkInnerColor);
+    input {
+      @include InputTheme($lightInputBg, $lightInnerColor);
 
-        .inner-header {
-            @include headerTheme(inherit, $boxShadowDark);
-            
-        }
-
-        input {
-            @include InputTheme($darkInputBg, $darkInputColor);
-
-        }
     }
 
+    #nav {
+      background-color: rgba(255, 255, 255, 0.17); //light
+      border-top: 1px solid rgba(0, 0, 0, 0.05); //light
+
+      button[data-btn] {
+        @include button(0, 0, unset);
+        color: #64748b; //light
+
+        &.activeSec {
+          color: $lightInnerColor; //light
+        }
+      }
+    }
+
+    li {
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.09); //light
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04); //light
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); //light
+      }
+      .listItem {
+        &:focus {
+          &.focus {
+            outline: 1px solid $lightInnerColor;
+            border-radius: 6px;
+            outline-offset: 2px;
+          }
+        }
+      }
+    }
+
+    #cancelBtn {
+      color: $lightInnerColor;
+    }
+
+    .editBtn,
+    .delBtn {
+      color: $lightInnerColor;
+    }
+  }
+
+  &.dark {
+    @include bodyTheme($darkInnerBgColor, $darkInnerColor);
+
+    .inner-header {
+      @include headerTheme(inherit, $boxShadowDark);
+    }
+
+    input {
+      @include InputTheme($darkInputBg, $darkInputColor);
+
+    }
+
+    #nav {
+      background-color: rgba(15, 23, 42, 0.85); //dark
+      border-top: 1px solid rgba(255, 255, 255, 0.05); //dark
+      button[data-btn] {
+        @include button(0, 0, unset);
+        color: #94a3b8; //dark
+
+        &.activeSec {
+          color: $darkMainColor; //dark
+        }
+      }
+    }
+
+    li {
+      box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.06); //dark
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.025); //dark
+
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.08); //dark
+      }
+      .listItem {
+        &:focus {
+          &.focus {
+            outline: 1px solid $darkInnerColor;
+            border-radius: 6px;
+            outline-offset: 2px;
+          }
+        }
+      }
+    }
+
+    #cancelBtn {
+      color: $darkInnerColor;
+    }
+    .editBtn,
+    .delBtn {
+      color: $darkInnerColor;
+    }
+  }
 }
