@@ -5,6 +5,11 @@
   position: absolute;
   z-index: 1;
   width: 100%;
+  .logoCon {
+    display: inline-flex;
+    gap: 0.35rem;
+    // background-color: rgb(114, 139, 139);
+  }
   .hero {
     @include flexDisplay();
 
