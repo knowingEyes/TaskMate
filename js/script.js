@@ -5,7 +5,9 @@ import { getFromLocalstorage, saveToLocalStorage } from "./localstorage.js";
 import { completedLi, pendingLi, promptIllustration } from "./event.js";
 import { Tasks } from "./task.js";
 import { createTaskTemplate } from "./helper.js";
-import Sortable from "sortablejs";
+
+import "./ui_Effects.js";
+
 
 //Get saved keys from local storage
 let theme = getFromLocalstorage("theme");
@@ -34,12 +36,3 @@ Tasks.filter((element) => {
   }
 });
 
-function dragAndDrop() {
-  [completedLi, pendingLi].forEach((element) => {
-    new Sortable(element, {
-      animation: 200,
-      ghostClass: "gray-background-class",
-    });
-  });
-}
-dragAndDrop();
