@@ -5,6 +5,9 @@
   position: absolute;
   z-index: 1;
   width: 100%;
+  // overflow-x: hidden;
+  // overflow-y: scroll;
+ 
   .logoCon {
     display: inline-flex;
     gap: 0.35rem;

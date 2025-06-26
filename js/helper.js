@@ -1,5 +1,6 @@
 import { delTask, IstaskCompleted, Tasks, updateTaskContent } from "./task.js";
 import { searchInput, searchResults, pendingLi, completedLi } from "./event.js";
+import ScrollReveal from "scrollreveal";
 
 export function TransitionToInnerPage(e) {
   e.classList.add("fadeOut");
@@ -29,6 +30,7 @@ export function createTaskTemplate(task, ulToappend) {
   let lists = createEl("li");
   lists.setAttribute("class", "list");
   lists.setAttribute("data-id", `${task.id}`);
+  setTimeout(() => lists.setAttribute("data-state", `animated`));
   lists.innerHTML = `<div class ="listItemCon">
     <div class="itemsCon"><div class="customCheckCon"><input type="checkbox" class ="checkInput" ${checked}><span class="check"></span></div><label class="listItem">${task.task}</label></div>
     <div class="btnsCon"><button class="doneBtn hidden">Done</button><button class="editBtn"><svg width="20"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width n h="1.5" stroke="currentColor" class="size-6">
@@ -56,12 +58,12 @@ export function searchForTasks() {
       emptyList;
       noResultMessage.classList.add("hidden");
       emptySearchInputPng.classList.remove("hidden");
+      console.log(emptySearchInputPng);
     } else if (task.task.includes(searchInput.value)) {
       createTaskTemplate(task, searchResults);
     } else {
       emptySearchInputPng.classList.add("hidden");
       noResultMessage.classList.remove("hidden");
-
       inputValueDisplay.textContent = ` "${searchInput.value}"`;
     }
   });
@@ -146,4 +148,27 @@ export function checkEmptyList(duration = 500) {
 export function handleTasksInteraction(e) {
   handleTaskAction(e);
   handleTaskState(e, true);
+}
+
+export function animate(el, obj = {}) {
+  ScrollReveal().reveal(el, {
+    origin: "top",
+    distance: "20px",
+    duration: "500",
+    opacity: 0,
+    easing: "ease-out",
+    reset: true,
+    mobile: true,
+    cleanup: true,
+    ...obj,
+  });
+}
+
+export function animateLists(obj) {
+  const lists = document.querySelectorAll(".list");
+  lists.forEach((list) => {
+    if (list.dataset.state !== "animated") {
+      animate(list, obj);
+    }
+  });
 }

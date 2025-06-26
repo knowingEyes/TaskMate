@@ -9,6 +9,8 @@ import {
 import { addTask } from "./task.js";
 import { saveToLocalStorage } from "./localstorage.js";
 import { searchForTasks, handleTaskState } from "./helper.js";
+import ScrollReveal from "scrollreveal";
+import { animateLists } from "./helper.js";
 
 const pendingLi = document.querySelector("#pendingTasks");
 const completedLi = document.querySelector("#completedT");
@@ -24,6 +26,8 @@ const taskForm = document.querySelector("form");
 const customBtn = document.getElementById("customBtn");
 const links = document.querySelectorAll("[data-btn]");
 const searchForTasksForm = document.getElementById("searchForTasksForm");
+const formCon = document.getElementById("addTaskContainer");
+const lists = document.querySelectorAll(".list");
 export {
   pendingLi,
   completedLi,
@@ -64,6 +68,17 @@ taskForm.addEventListener("submit", (e) => {
   }
   addTask(taskInput.value);
   taskInput.value = "";
+  animateLists({
+    origin: "bottom",
+    distance: "14px",
+    duration: "400",
+    opacity: 0,
+    easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+    interval: 0,
+    reset: false,
+    mobile: true,
+  });
+
   promptIllustration[0].classList.add("hidden");
 });
 
@@ -76,21 +91,21 @@ links.forEach((link) => {
     links.forEach((element) => {
       element.classList.remove("activeSec");
       pages.forEach((element) => {
-        element.classList.add("hidden");
+        element.classList.add("notVisible");
       });
     });
-
     if (corresponding && correspondingUl.id === "completedT") {
       correspondingUl.innerHTML = "";
-      loadTaskTo();
+      loadTaskTo()
       checkEmptyList(0);
     } else if (corresponding && correspondingUl.id === "pendingTasks") {
       correspondingUl.innerHTML = "";
       loadTaskTo();
       checkEmptyList(0);
+    } else if (corresponding && correspondingUl.id === "searchResults") {
+      checkEmptyList(0);
     }
-
-    corresponding.classList.remove("hidden");
+    corresponding.classList.remove("notVisible");
     link.classList.add("activeSec");
   });
 });
@@ -126,7 +141,12 @@ completedLi.addEventListener("click", (e) => {
 searchResults.addEventListener("click", (e) => {
   handleTaskAction(e);
   handleTaskState(e, false);
-  checkEmptyList();
+  checkEmptyList(0);
 });
 
 document.addEventListener("DOMContentLoaded", checkEmptyList);
+
+customBtn.addEventListener("click", () => {
+  formCon.classList.add("visible");
+  document.querySelector("#taskInput").focus();
+});

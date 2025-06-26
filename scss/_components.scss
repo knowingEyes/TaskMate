@@ -1,5 +1,6 @@
 @use "variables" as *;
 @use "mixins" as *;
+@use "animations" as *;
 
 .hidden {
   display: none;
@@ -8,6 +9,11 @@
 .active {
   display: block;
 }
+.notVisible {
+  opacity: 0;
+  visibility: hidden;
+}
+
 
 .toggle {
   @include button(0, 0, unset);
@@ -44,12 +50,11 @@
   &:focus {
     outline: none;
     border: 1px solid rgba(59, 130, 246, 0.4);
-
   }
 }
 
 .form {
-  margin-top: $spacingLg;
+  // margin-top: $spacingLg;
   @include flexDisplay(row, center, space-between);
 }
 
@@ -88,8 +93,15 @@
   @include button(5px, 0, none);
 }
 
-#customBtn,#addTaskBtn,#getStartedBtn {
+#customBtn,
+#addTaskBtn,
+#getStartedBtn {
   &:active {
     transform: scale(1.02);
   }
+}
+
+.slideFromTop {
+  animation: slideFromTop 1s ease-out forwards;
+  transition: all 0.5s ease-out;
 }

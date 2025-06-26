@@ -8,6 +8,25 @@
   }
 }
 
+@keyframes slideFromTop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeFromTop {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 // @keyframes rotate {
 //     form {
 //         transform: rotate(0);
