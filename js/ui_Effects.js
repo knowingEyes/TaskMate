@@ -1,15 +1,21 @@
 import { animate } from "./helper";
 import { completedLi, innerPage, landingPage, pendingLi } from "./event";
 import Sortable from "sortablejs";
+import { Tasks } from "./task";
+import { saveToLocalStorage } from "./localstorage";
 
 const headerTexts = document.querySelectorAll(".header-label");
 
 export function dragAndDrop() {
-  [completedLi, pendingLi].forEach((element) => {
-    new Sortable(element, {
-      animation: 200,
-      ghostClass: "gray-background-class",
-    });
+  new Sortable(pendingLi, {
+    animation: 250,
+    ghostClass: "ghost",
+    swapThreshold: 0.65,
+    onEnd: function (evt) {
+      const movedTask = Tasks.splice(evt.oldIndex, 1)[0];
+      Tasks.splice(evt.newIndex, 0, movedTask);
+      saveToLocalStorage("tasks", Tasks);
+    },
   });
 }
 dragAndDrop();

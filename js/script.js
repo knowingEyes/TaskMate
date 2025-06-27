@@ -5,7 +5,7 @@ import { getFromLocalstorage, saveToLocalStorage } from "./localstorage.js";
 import { completedLi, pendingLi, promptIllustration } from "./event.js";
 import { Tasks } from "./task.js";
 import { createTaskTemplate } from "./helper.js";
-
+import Sortable from "sortablejs";
 import "./ui_Effects.js";
 
 
@@ -35,4 +35,3 @@ Tasks.filter((element) => {
     createTaskTemplate(element, pendingLi);
   }
 });
-

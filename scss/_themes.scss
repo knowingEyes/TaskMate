@@ -29,7 +29,6 @@
 
     input {
       @include InputTheme($lightInputBg, $lightInnerColor);
-
     }
 
     #nav {
@@ -71,6 +70,22 @@
     .delBtn {
       color: $lightInnerColor;
     }
+    .ghost {
+      opacity: 0.95;
+      background: linear-gradient(
+        135deg,
+        darken($color: $lightInnerBgColor, $amount: 8%) 0%,
+        lighten($color: $lightInnerBgColor, $amount: 12%) 100%
+      );
+      backdrop-filter: blur(5px) saturate(140%);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1),
+        inset 0 0 0.5px rgba(255, 255, 255, 0.2);
+      transition: all 0.2s ease;
+      transform: scale(0.98);
+      border-radius: 1rem;
+      user-select: none;
+      pointer-events: none;
+    }
   }
 
   &.dark {
@@ -82,7 +97,6 @@
 
     input {
       @include InputTheme($darkInputBg, $darkInputColor);
-
     }
 
     #nav {
@@ -122,6 +136,23 @@
     .editBtn,
     .delBtn {
       color: $darkInnerColor;
+    }
+    .ghost {
+      //dark
+      opacity: 0.85;
+      background: linear-gradient(
+        135deg,
+        lighten($color: $darkInnerBgColor, $amount: 10%) 0%,
+        lighten($color: $darkInnerBgColor, $amount: 18%) 100%
+      );
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35),
+        inset 0 0 0.5px rgba(255, 255, 255, 0.1);
+      user-select: none;
+      pointer-events: none;
+      backdrop-filter: blur(6px) saturate(160%);
+      transition: all 0.25s ease;
+      transform: scale(0.975);
     }
   }
 }
