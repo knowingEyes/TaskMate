@@ -32,12 +32,17 @@ export function createTaskTemplate(task, ulToappend) {
   lists.setAttribute("data-id", `${task.id}`);
   setTimeout(() => lists.setAttribute("data-state", `animated`));
   lists.innerHTML = `<div class ="listItemCon">
-    <div class="itemsCon"><div class="customCheckCon"><input type="checkbox" class ="checkInput" ${checked}><span class="check"></span></div><label class="listItem">${task.task}</label></div>
+    <div class="itemsCon"><div class="customCheckCon"><input type="checkbox" class ="checkInput" ${checked}><span class="check"></span></div><label class="listItem">${
+    task.task
+  }</label></div>
     <div class="btnsCon"><button class="doneBtn hidden">Done</button><button class="editBtn"><svg width="20"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width n h="1.5" stroke="currentColor" class="size-6">
    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
 </svg></button><button class="delBtn"><svg width="20"   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"  />
  </svg></button></div>
+    <span class ="timeStamp">${timeStamp(
+      new Date()
+    )}</span>
     </div>`;
   return ulToappend.append(lists);
 }
@@ -171,4 +176,22 @@ export function animateLists(obj) {
       animate(list, obj);
     }
   });
+}
+
+function timeStamp(created) {
+  const currentDate = new Date().getTime();
+  const taskCreated = created.getTime();
+  const timeDiff = currentDate - taskCreated;
+  let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  if (days === 0) {
+    return `Created Today`;
+  } else if (days <= 7) {
+    return `Created ${days} ago`;
+  } else if (days > 7) {
+    return `Created ${created.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })}`;
+  }
 }

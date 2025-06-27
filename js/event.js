@@ -96,7 +96,7 @@ links.forEach((link) => {
     });
     if (corresponding && correspondingUl.id === "completedT") {
       correspondingUl.innerHTML = "";
-      loadTaskTo()
+      loadTaskTo();
       checkEmptyList(0);
     } else if (corresponding && correspondingUl.id === "pendingTasks") {
       correspondingUl.innerHTML = "";
@@ -150,3 +150,10 @@ customBtn.addEventListener("click", () => {
   formCon.classList.add("visible");
   document.querySelector("#taskInput").focus();
 });
+
+// lists.forEach(element => {
+//   element.addEventListener("click",()=>{
+//     alert("hi")
+//   })
+// });
+// document.addEventListener("")

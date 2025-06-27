@@ -90,7 +90,7 @@
 .delBtn {
   background: none;
   color: azure;
-  @include button(5px, 0, none);
+  @include button(0px, 0, none);
 }
 
 #customBtn,
