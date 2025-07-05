@@ -1,0 +1,54 @@
+@use "variables" as *;
+@use "mixins" as *;
+.profilePhotoCon {
+  margin: 2rem 1rem auto 1rem;
+  .profilePhoto {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+.userName {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: "Poppins";
+  margin-bottom: 1.3rem;
+}
+.settings {
+  margin: 0 1rem;
+  .preference {
+    @include flexDisplay(row, center, space-between);
+    padding: 1rem;
+    margin: 0.7rem 0;
+    border-radius: $boderRadiusSm;
+    gap: 1.5rem;
+    .switch {
+      .switchCheck {
+        transform: scale(1.45);
+        cursor: pointer;
+      }
+    }
+  }
+  .resetCon {
+    @include flexDisplay;
+    #resetProfile {
+      @include button(0, 0, transparent);
+      color: rgb(231, 15, 15);
+      font-size: 1rem;
+    }
+    padding-bottom: 8rem;
+  }
+
+  .labelCon {
+    span {
+      font-size: 1.03rem;
+      font-weight: 600;
+    }
+    .description {
+      font-size: 0.8rem;
+      text-align: left;
+
+      width: 100%;
+    }
+  }
+}

@@ -1,6 +1,24 @@
+export let completedtaskDisplay = document.getElementById(
+  "counterBadgeCompleted"
+);
+export let alltaskDisplay = document.getElementById("counterBadgeAll");
 import { delTask, IstaskCompleted, Tasks, updateTaskContent } from "./task.js";
-import { searchInput, searchResults, pendingLi, completedLi } from "./event.js";
+import {
+  searchInput,
+  searchResults,
+  pendingLi,
+  completedLi,
+  editInput,
+  editModal,
+  store,
+  confirmDel,
+  landingPage,
+  innerPage,
+  resetProfileModal
+} from "./event.js";
 import ScrollReveal from "scrollreveal";
+import { settings } from "./settings.js";
+
 
 export function TransitionToInnerPage(e) {
   e.classList.add("fadeOut");
@@ -8,8 +26,8 @@ export function TransitionToInnerPage(e) {
 
 //Toggle themes and theme icons
 export function ToggleTheme(elements, clas) {
-  document.querySelector("#landingPage").classList.toggle("dark");
-  document.querySelector("#innerPage").classList.toggle("dark");
+  landingPage?.classList.toggle("dark");
+  innerPage.classList.toggle("dark");
   toggleif(elements, clas);
 }
 
@@ -26,13 +44,16 @@ export function toggleif(elements, clas) {
 
 // list items template structure
 export function createTaskTemplate(task, ulToappend) {
-  const checked = task.completed === true ? "checked" : "";
+  const checked = task.completed ? "checked" : "";
+  const lineThrough = task.completed
+    ? "text-decoration:line-through; color:#94a3b8;"
+    : "";
   let lists = createEl("li");
   lists.setAttribute("class", "list");
   lists.setAttribute("data-id", `${task.id}`);
   setTimeout(() => lists.setAttribute("data-state", `animated`));
   lists.innerHTML = `<div class ="listItemCon">
-    <div class="itemsCon"><div class="customCheckCon"><input type="checkbox" class ="checkInput" ${checked}><span class="check"></span></div><label class="listItem">${
+    <div class="itemsCon"><div class="customCheckCon"><input type="checkbox" class ="checkInput" ${checked}><span class="check"></span></div><label class="listItem" style ="${lineThrough}">${
     task.task
   }</label></div>
     <div class="btnsCon"><button class="doneBtn hidden">Done</button><button class="editBtn"><svg width="20"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width n h="1.5" stroke="currentColor" class="size-6">
@@ -40,9 +61,10 @@ export function createTaskTemplate(task, ulToappend) {
 </svg></button><button class="delBtn"><svg width="20"   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"  />
  </svg></button></div>
-    <span class ="timeStamp">${timeStamp(
-      new Date()
-    )}</span>
+    <span class ="timeStamp"><svg width="13" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
+ ${timeStamp(new Date())}</span>
     </div>`;
   return ulToappend.append(lists);
 }
@@ -63,7 +85,6 @@ export function searchForTasks() {
       emptyList;
       noResultMessage.classList.add("hidden");
       emptySearchInputPng.classList.remove("hidden");
-      console.log(emptySearchInputPng);
     } else if (task.task.includes(searchInput.value)) {
       createTaskTemplate(task, searchResults);
     } else {
@@ -79,48 +100,53 @@ export function handleTaskAction(e) {
   const delbtn = e.target.closest(".delBtn");
   const editBtn = e.target.closest(".editBtn");
   const listItem = e.target.closest(".listItemCon")?.querySelector(".listItem");
-  const EditPanel = document.querySelector("#editPanel");
-  const listId = e.target.closest(".list").dataset.id;
-
+  const listId = e.target.closest(".list")?.dataset.id;
+  const list = e.target.closest(".list");
   if (delbtn) {
-    setTimeout(() => {
-      e.target.closest(".list").remove();
-    }, 500);
-
-    delTask(listId);
+    if (settings["confirm before deleting tasks"]) {
+      store.list = list;
+      store.listId = listId;
+      addOverlayBlurBg();
+      openConfirmDel();
+    } else {
+      setTimeInterval(list, 500); //visit
+      delTask(listId);
+    }
   } else if (editBtn) {
-    toggleif([doneBtn, EditPanel], "hidden");
-    toggleif([doneBtn, listItem], "position");
-    listItem.contentEditable = true;
-    listItem.focus();
-    listItem.classList.add("focus");
-  } else if (doneBtn) {
-    updateTaskContent(listId, listItem);
-    toggleif([doneBtn, EditPanel], "hidden");
-    toggleif([doneBtn, listItem], "position");
-    listItem.contentEditable = false;
+    openModal();
+    editInput.value = listItem.textContent;
+    store.listId = listId;
+    store.currentListItem = listItem;
   }
 }
 
 export function handleTaskState(e, boolean) {
   const checkBox = e.target.closest(".itemsCon")?.querySelector(".checkInput");
-  const listId = e.target.closest(".list").dataset.id;
+  const listId = e.target.closest(".list")?.dataset.id;
   const lists = e.target.closest(".list");
   if (e.target.matches("input[type='checkbox']")) {
     if (checkBox.checked) {
       IstaskCompleted(listId, true);
+      taskCounter();
       setTimeout(() => {
         removelement(lists, boolean);
       }, 500);
+      showToast("Task added to completed");
+      if (!settings.sound) {
+        checkSound();
+      }
+      navigator.vibrate(10);
     } else {
       IstaskCompleted(listId, false);
+      taskCounter();
       setTimeout(() => {
         removelement(lists, boolean);
       }, 500);
+      navigator.vibrate(10);
     }
   }
 }
-function removelement(e, boolean) {
+export function removelement(e, boolean = true) {
   if (boolean === true) e.remove();
 }
 
@@ -182,16 +208,94 @@ function timeStamp(created) {
   const currentDate = new Date().getTime();
   const taskCreated = created.getTime();
   const timeDiff = currentDate - taskCreated;
+  const localDateString = `${created.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })}`;
   let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-  if (days === 0) {
-    return `Created Today`;
-  } else if (days <= 7) {
-    return `Created ${days} ago`;
-  } else if (days > 7) {
-    return `Created ${created.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })}`;
+  if (!settings["local date"]) {
+    if (days === 0) {
+      return `Today`;
+    } else if (days <= 7) {
+      return `${days} ago`;
+    } else if (days > 7) {
+      return localDateString;
+    }
+  } else {
+    return localDateString;
+  }
+}
+
+export function openModal() {
+  editModal.classList.add("fadeInUp");
+  editPanelBlur.classList.remove("hidden");
+}
+
+export function closeModal() {
+  editModal.classList.remove("fadeInUp");
+  editPanelBlur.classList.add("hidden");
+}
+
+export function closeConfirmDel() {
+  confirmDel.classList.remove("fadeInBottom");
+}
+
+export function openConfirmDel() {
+  confirmDel.classList.add("fadeInBottom");
+}
+export function addOverlayBlurBg() {
+  editPanelBlur.classList.remove("hidden");
+}
+
+export function removeOverlayBlurBg() {
+  editPanelBlur.classList.add("hidden");
+}
+
+export function checkSound(muted = false) {
+  let audioSound = new Audio("assets/audios/slick-notification.mp3");
+  audioSound.muted = muted;
+  audioSound.play();
+}
+
+export function setTimeInterval(el, interval) {
+  return setInterval(() => {
+    removelement(el);
+  }, interval);
+}
+export function openConfirmReset() {
+  resetProfileModal.classList.add("fadeInUp");
+}
+export function closeConfirmReset() {
+  resetProfileModal.classList.remove("fadeInUp");
+}
+
+export function showToast(toastMsg = "Status updated") {
+  const toast = document.getElementById("statusToast");
+  toast.textContent = toastMsg;
+  toast.classList.add("showToast");
+  setTimeout(() => {
+    toast.classList.remove("showToast");
+  }, 2500);
+}
+
+export function taskCounter() {
+  let completedtaskDisplay = document.getElementById("counterBadgeCompleted");
+  let alltaskDisplay = document.getElementById("counterBadgeAll");
+  let completedtaskscount = 0;
+  let alltaskscount = 0;
+  if (!settings["task counter badge"])
+    for (let i = 0; i < Tasks.length; i++) {
+      if (Tasks[i]["completed"]) {
+        completedtaskscount++;
+      } else {
+        alltaskscount++;
+      }
+      completedtaskDisplay.textContent = completedtaskscount;
+      alltaskDisplay.textContent = alltaskscount;
+    }
+  else {
+    completedtaskDisplay.classList.add("hidden");
+    alltaskDisplay.classList.add("hidden");
   }
 }

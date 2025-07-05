@@ -1,6 +1,6 @@
 // import { unOrderedList, unOrderedList2 } from "./event.js";
-import { completedLi, pendingLi } from "./event.js";
-import { createTaskTemplate, toggleif } from "./helper.js";
+import {  pendingLi } from "./event.js";
+import { createTaskTemplate, showToast, taskCounter, toggleif } from "./helper.js";
 import { getFromLocalstorage, saveToLocalStorage } from "./localstorage.js";
 export const saved = getFromLocalstorage("tasks") || [];
 export const Tasks = [...saved];
@@ -22,16 +22,19 @@ export function delTask(id) {
       saveToLocalStorage("tasks", Tasks);
     }
   });
+  showToast("Task deleted")
+  taskCounter()
 }
 
 //upadete list item and save to LS
-export function updateTaskContent(listId, listItem) {
+export function updateTaskContent(listId, newListItem) {
   Tasks.find((task) => {
     if (task.id === listId) {
-      task.task = listItem.innerHTML;
+      task.task = newListItem;
       saveToLocalStorage("tasks", Tasks);
     }
   });
+  showToast("Status updated")
 }
 
 export function IstaskCompleted(listId, boolean) {

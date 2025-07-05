@@ -36,7 +36,6 @@
       border-top: 1px solid rgba(0, 0, 0, 0.05); //light
 
       button[data-btn] {
-        @include button(0, 0, unset);
         color: #64748b; //light
 
         &.activeSec {
@@ -48,8 +47,8 @@
     li {
       .listItemCon {
         box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.09); //light
-                .timeStamp {
-          color: darken(#94a3b8,30%);
+        .timeStamp {
+          color: darken(#94a3b8, 30%);
         }
       }
       &:hover {
@@ -91,6 +90,48 @@
       user-select: none;
       pointer-events: none;
     }
+    .editModal {
+      background-color: darken($color: $lightInnerBgColor, $amount: 4%);
+      box-shadow: $boxShadowLight;
+      input {
+        background-color: $lightInputBg;
+      }
+      h2 {
+        color: darken($color: $lightInnerColor, $amount: 10%);
+      }
+      .cancelBtn {
+        background: $lightInnerBgColor;
+        color: $lightInnerColor;
+        &:hover {
+          background: darken($color: $lightInnerBgColor, $amount: 7%);
+        }
+      }
+    }
+    .confirmDel {
+      .delConfirm {
+        background-color: rgba(220, 38, 38, 0.22);
+        color: #dc2626;
+        &:hover {
+          background-color: rgba(220, 38, 38, 0.3);
+        }
+      }
+      .cancelConfirm {
+        color: $lightInnerColor;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+      }
+    }
+    .preference {
+      background-color: darken($color: $lightInnerBgColor, $amount: 5%);
+      &:hover {
+        background-color: darken($color: $lightInnerBgColor, $amount: 10%);
+      }
+    }
+    #statusToast {
+      background-color: darken($color: $lightInnerBgColor, $amount: 4%);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
   }
 
   &.dark {
@@ -108,7 +149,6 @@
       background-color: rgba(15, 23, 42, 0.85); //dark
       border-top: 1px solid rgba(255, 255, 255, 0.05); //dark
       button[data-btn] {
-        @include button(0, 0, unset);
         color: #94a3b8; //dark
 
         &.activeSec {
@@ -163,6 +203,50 @@
       backdrop-filter: blur(6px) saturate(160%);
       transition: all 0.25s ease;
       transform: scale(0.975);
+    }
+    .editModal {
+      background-color: lighten($color: $darkInnerBgColor, $amount: 6%);
+      box-shadow: $boxShadowDark;
+      input {
+        background-color: lighten($color: $darkInputBg, $amount: 5%);
+      }
+
+      h2 {
+        color: lighten($color: $darkInnerColor, $amount: 10%);
+      }
+      .cancelBtn {
+        background: $darkInnerBgColor;
+        color: $darkInnerColor;
+        &:hover {
+          background: lighten($color: $darkInnerBgColor, $amount: 7%);
+        }
+      }
+    }
+    .confirmDel {
+      .delConfirm {
+        background-color: rgba(239, 68, 68, 0.18);
+        color: #ef4444;
+        &:hover {
+          background-color: rgba(239, 68, 68, 0.28);
+        }
+      }
+      .cancelConfirm {
+        background-color: rgba(255, 255, 255, 0.03);
+        color: $darkInnerColor;
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.03);
+        }
+      }
+    }
+    .preference {
+      background-color: lighten($color: $darkInnerBgColor, $amount: 5%);
+      &:hover {
+        background-color: lighten($color: $darkInnerBgColor, $amount: 10%);
+      }
+    }
+    #statusToast {
+      background-color: lighten($color: $darkInnerBgColor, $amount: 8%);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
   }
 }

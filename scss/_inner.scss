@@ -7,13 +7,20 @@
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
+
   div[data-role] {
     position: absolute;
-    // left:0;
-    // top:0;
-    // right: 0;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+  }
+  .greeting {
+    margin-left: 1rem;
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    height: 28px;
   }
 
   //visist Tomorrow
@@ -27,11 +34,13 @@
   }
 
   #addTaskContainer {
+    visibility: hidden;
     &.visible {
       opacity: 1;
       transform: scale(1);
       pointer-events: auto;
       max-height: 100px;
+      visibility: visible;
     }
   }
   form {
@@ -41,17 +50,17 @@
       @extend .input;
     }
   }
-}
-
-.promptIllustration {
-  position: absolute;
-  margin: auto;
-  height: max-content;
-  inset: 0 0 0 0;
+  .promptIllustration {
+    position: absolute;
+    margin: auto;
+    height: max-content;
+    inset: 0 0 0 0;
+  }
 }
 
 ul {
   margin-top: 1rem;
+  padding-bottom: 10rem;
   li {
     display: block;
     position: relative;
@@ -62,9 +71,6 @@ ul {
       padding-inline-start: 0 !important;
       padding-top: 0.8rem !important;
       padding-bottom: 1.5rem;
-      // &:hover .timeStamp {
-      //   opacity: 1;
-      // }
       .itemsCon {
         display: flex;
         flex: 1;
@@ -127,26 +133,28 @@ ul {
       .btnsCon {
         padding-top: 10px;
         display: flex;
-        column-gap: 0.3rem;
+        column-gap: 0.7rem;
       }
     }
     .timeStamp {
-      // color: #94a3b8;
       bottom: 4px;
       position: absolute;
       font-size: 0.8rem;
       opacity: 0;
-      font-style: italic;
+      display: flex;
+      gap: 2px;
       user-select: none;
     }
   }
 }
-#editPanel {
-  backdrop-filter: blur(5px);
+
+#editPanelBlur {
+  backdrop-filter: blur(2px);
   width: 100%;
   height: 100vh;
-  position: absolute;
-  z-index: 3;
+  position: fixed;
+  z-index: 99;
+  user-select: none;
 }
 
 #nav {
@@ -159,5 +167,228 @@ ul {
   transition: color 5s ease;
   button[data-btn] {
     transition: color 0.4s ease;
+    @include button(0, 0, transparent);
+    position: relative;
+    #counterBadgeAll,
+    #counterBadgeCompleted {
+      position: absolute;
+      background-color: $btnBgColor;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include flexDisplay(row, center, center);
+      padding: 6px !important;
+      font-size: 0.72rem;
+      top: 0;
+      right: 0;
+      z-index: 9999;
+      color: #fff;
+      &.hidden {
+        opacity: 0;
+      }
+    }
+    #counterBadgeCompleted {
+      right: 5px;
+    }
   }
 }
+
+.editModal {
+  width: min(90%, 400px);
+  height: 210px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  margin: auto;
+  border-radius: $boderRadiusMd;
+  z-index: 99;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  user-select: none;
+  pointer-events: none;
+  @extend .position;
+  header {
+    border-radius: $boderRadiusMd $boderRadiusMd 0 0 !important;
+  }
+  &.fadeInUp {
+    @extend .fadeUp;
+  }
+  input {
+    margin-top: $spacingMd;
+  }
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  .modalBtns {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    @include flexDisplay("row", center, "flex-end");
+    gap: 1rem;
+    .cancelBtn,
+    .doneBtn {
+      @include button(0.7rem 1.4rem, $boderRadiusSm);
+      cursor: pointer;
+      width: calc(100% / 2);
+    }
+  }
+}
+
+.confirmDel {
+  background-color: transparent;
+  @include flexDisplay(column-reverse, flex-end, flex-end);
+  row-gap: 0.5rem;
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding-bottom: 0.55rem;
+  transform: translateY(90%);
+  transition: transform 0.4s ease-out;
+  &.fadeInBottom {
+    transform: translateY(0);
+  }
+  .cancelConfirm,
+  .delConfirm {
+    @include button(1rem, 0, transparent);
+    bottom: 5rem;
+    width: 100%;
+    border-radius: $boderRadiusSm;
+    backdrop-filter: blur(4px) saturate(160%);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .cancelConfirm {
+    backdrop-filter: blur(6px) saturate(180%);
+  }
+}
+
+#statusToast {
+  position: fixed;
+  padding: 0.75rem 1.5rem;
+  transform: translate(-50%, -100%);
+  border-radius: $boderRadiusMd;
+  z-index: 999;
+  pointer-events: none;
+  font-size: 0.95rem;
+  opacity: 0;
+  left: 50%;
+  transition: transform 0.4s ease, opacity 0.2s ease;
+  top: 2rem;
+  text-align: center;
+  width: max-content;
+  &.showToast {
+    transform: translate(-50%, 0%);
+    opacity: 1;
+  }
+}
+
+#welcomeToast {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  margin: auto;
+  height: 200px;
+  width: min(90%, 400px);
+  box-shadow: $boxShadowDark;
+  border-radius: $boderRadiusMd;
+  backdrop-filter: blur(10px) saturate(160%);
+  transition: all 0.6s ease;
+  z-index: 9999;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  &.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-20px);
+    pointer-events: all;
+  }
+  .enterBtn {
+    @include button(
+      0.6rem 3.4rem,
+      $boderRadiusMd,
+      darken($color: $btnBgColor, $amount: 15%)
+    );
+    font-size: 1rem;
+    &:hover {
+      transform: scale(0.9);
+      background-color: lighten($color: $btnBgColor, $amount: 5%);
+    }
+    margin-top: 0.8rem;
+  }
+  #wlcText {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  #welcomeToastForm {
+    flex-direction: column !important;
+    row-gap: 1rem;
+    #userNameInput {
+      width: 85%;
+      margin: 0 auto;
+    }
+  }
+}
+#resetProfileModal {
+  width: min(90%, 400px);
+  position: fixed;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: $boderRadiusMd;
+  padding: 1rem;
+  backdrop-filter: blur(10px) saturate(195%);
+  visibility: hidden;
+  user-select: none;
+  transition: all 0.4s ease-in-out;
+  opacity: 0;
+  &.fadeInUp {
+    @extend .fadeUp;
+  }
+  .resetBtn,
+  .cancelResetBtn {
+    @include button(0.6rem 1.4rem, $boderRadiusMd, transparent);
+    margin-right: 0.6rem;
+    width: calc(100% / 2);
+    font-size: 0.8rem;
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+  #resetProfileBtnCon {
+    @include flexDisplay("row", center, "center");
+    .resetBtn {
+      background-color: red;
+      &:hover {
+        background-color: lighten($color: red, $amount: 10%);
+      }
+    }
+    .cancelResetBtn {
+      background-color: $btnBgColor;
+    }
+  }
+  #innerPage.dark & {
+    h4,
+    p {
+      color: lighten($color: $darkInnerColor, $amount: 100%);
+    }
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+

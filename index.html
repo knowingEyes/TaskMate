@@ -5,191 +5,302 @@
   <link rel="stylesheet" href="css/main.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>To-Do</title>
+  <title>TaskMate</title>
 </head>
 
 <body>
   <!-- landing-page section start-->
-  <section id="landingPage" class="light">
-    <div>
-      <header id="landing-header">
-        <div class="logoCon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 8 8" fill="CurrentColor">
-            <path d="M0 0v7h7V3.41l-1 1V6H1V1h3.59l1-1H0zm7 0L4 3 3 2 2 3l2 2 4-4-1-1z"></path>
-          </svg>
-          <h3 style="display: inline-block" class="logo-title">TaskMate</h3>
+  <main>
+    <section id="landingPage" class="light">
+      <div>
+        <header id="landing-header">
+          <div class="logoCon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 8 8" fill="CurrentColor">
+              <path d="M0 0v7h7V3.41l-1 1V6H1V1h3.59l1-1H0zm7 0L4 3 3 2 2 3l2 2 4-4-1-1z"></path>
+            </svg>
+            <h3 style="display: inline-block" class="logo-title">TaskMate</h3>
+          </div>
+          <button class="toggle">
+            <svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6 moon hidden">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg><svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6 sun">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+          </button>
+        </header>
+        <div class="hero">
+          <h1 id="title">Welcome to Your Productivity Hub</h1>
+          <p id="subtitle">
+            Plan smarter. Stay focused. Take control of your day with a
+            simple, beautiful task manager built for you.
+          </p>
+          <button id="getStartedBtn" type="button" class="">
+            Get Started
+          </button>
+          <blockquote id="quoteBlock"><p class="quote"></p></blockquote>
+          <figure class="figure left">
+            <img src="assets/images/Dayflow3.png" alt="blush-illustration" />
+            <figcaption>
+              Stay organized, stay connected. Whether you’re planning your day
+              or building something big, every task becomes easier when you
+              work together. Collaboration, focus, and smart planning—all in
+              one space designed for productivity.
+            </figcaption>
+          </figure>
+          <figure class="figure right">
+            <img src="assets/images/Dayflow1.png" alt="blush-illustration" />
+            <figcaption>
+              Stay updated, stay in control. From incoming tasks to completed
+              goals, manage it all at your pace. With real-time updates and
+              seamless planning, your workflow stays smooth and focused.
+            </figcaption>
+          </figure>
+          <figure class="figure leftLast">
+            <img src="assets/images/Dayflow2.png" alt="blush-illustration" />
+            <figcaption>
+              Celebrate progress, track every step. From the little wins to
+              the major milestones, your tasks matter. With clear focus and
+              shared goals, every checkbox brings you closer to what truly
+              matters.
+            </figcaption>
+          </figure>
         </div>
-        <button class="toggle">
-          <svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="size-6 moon hidden">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-          </svg><svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="size-6 sun">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-          </svg>
-        </button>
-      </header>
-      <div class="hero">
-        <h1 id="title">Welcome to Your Productivity Hub</h1>
-        <p id="subtitle">
-          Plan smarter. Stay Focused. Take Control of Your day with a simple,
-          beautiful task manager built for you.
-        </p>
-        <button id="getStartedBtn" type="button" class="">Get Started</button>
-        <figure class="figure left">
-          <img src="assets/images/Dayflow3.png" alt="blush-illustration" />
-          <figcaption>
-            Stay organized, stay connected. Whether you’re planning your day
-            or building something big, every task becomes easier when you work
-            together. Collaboration, focus, and smart planning—all in one
-            space designed for productivity.
-          </figcaption>
-        </figure>
-        <figure class="figure right">
-          <img src="assets/images/Dayflow1.png" alt="blush-illustration" />
-          <figcaption>
-            Stay updated, stay in control. From incoming tasks to completed
-            goals, manage it all at your pace. With real-time updates and
-            seamless planning, your workflow stays smooth and focused.
-          </figcaption>
-        </figure>
-        <figure class="figure leftLast">
-          <img src="assets/images/Dayflow2.png" alt="blush-illustration" />
-          <figcaption>
-            Celebrate progress, track every step. From the little wins to the
-            major milestones, your tasks matter. With clear focus and shared
-            goals, every checkbox brings you closer to what truly matters.
-          </figcaption>
-        </figure>
       </div>
-    </div>
-  </section>
-  <!-- landing-page section End -->
+      <footer>
+        <p>&copy; 2025 TaskMate Built by Ibrahim.</p>
+      </footer>
+    </section>
+    <!-- landing-page section End -->
 
-  <!-- innerpage-section start -->
-  <section id="innerPage" class="light hidden">
-    <div id="editPanel" class="hidden"></div>
-    <div data-role="task">
-      <header class="inner-header">
-        <div class="header-label">
-          <h2>All Tasks</h2>
+    <!-- innerpage-section start -->
+    <section id="innerPage" class="light hidden">
+      <div data-role="task" id="allTasksSec">
+        <header class="inner-header">
+          <div class="header-label">
+            <h2>All Tasks</h2>
+          </div>
+          <button class="toggle">
+            <svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6 moon hidden">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg><svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6 sun">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+          </button>
+        </header>
+        <h2 class="greeting"></h2>
+
+        <div id="addTaskContainer">
+          <form id="addTaskForm">
+            <input type="text" placeholder="Add a Task..." name="taskInput" id="taskInput" inputmode="text"
+              autocomplete="off" spellcheck="false" /><button id="addTaskBtn">Add</button>
+          </form>
         </div>
-        <button class="toggle">
-          <svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="size-6 moon hidden">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-          </svg><svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="size-6 sun">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+
+        <ul id="pendingTasks" data-ul="one"></ul>
+        <div class="promptIllustration" data-illustration="one">
+          <figure>
+            <img src="assets/images/Fitz - Meditating at Home.png" alt="blush-illustration" />
+            <figcaption style="text-align: center">
+              Start your day with purpose, tap <br />the + button below to add
+              your task.
+            </figcaption>
+          </figure>
+        </div>
+        <button id="customBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white"
+            class="size-1" width="26" height="26">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
         </button>
-      </header>
-      <h1 style="text-align: left; margin: 1rem;">Welcome, Stranger</h1>
-      <div id="addTaskContainer">
-        <form id="addTaskForm">
-          <input type="text" placeholder="Add a Task..." name="taskInput" id="taskInput" inputmode="text"
-            autocomplete="off" spellcheck="false" /><button id="addTaskBtn">Add</button>
+      </div>
+      <!-- completed section -->
+      <div id="completedTasksection" data-role="completed" class="hidden">
+        <header class="inner-header">
+          <div class="header-label">
+            <h2>Completed Tasks</h2>
+          </div>
+        </header>
+        <ul id="completedT" data-ul="second"></ul>
+        <div class="promptIllustration" data-illustration="second">
+          <figure>
+            <img src="assets/images/Fitz - Rec Center.png" alt="blush-illustration" />
+            <figcaption>
+              Looks like you havent checked <br> off any
+              tasks once you complete <br> a task, it'll show up here
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- search section -->
+      <div data-role="search" id="searchsec" class="hidden">
+        <header class="inner-header">
+          <div class="header-label">
+            <h2>Search Results</h2>
+          </div>
+        </header>
+        <form action="" id="searchForTasksForm">
+          <input type="search" id="searchInput" name="search" placeholder="Search" />
+          <div class="btn">
+            <button id="cancelBtn" class="hidden">Cancel</button>
+          </div>
+        </form>
+        <ul id="searchResults" data-ul="third"></ul>
+        <div class="promptIllustration" data-illustration="third">
+          <figure id="emptySearchInputPng">
+            <img src="assets/images/undraw_searching_no1g.svg" alt="undraw-illustration;" />
+            <figcaption>
+              Looking for something? start typing<br />to search your task.
+              Let's help you find it.
+            </figcaption>
+          </figure>
+          <figure id="noSearchResultsPng" class="hidden">
+            <img src="assets/images/undraw_not-found_6bgl.svg" alt="undraw-illustration" />
+            <figcaption>
+              Hmm... nothing matches<span id="inputValueDisplay"></span><br />
+              Try checking your spelling or searching<br />
+              with a diffrent keyword.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <!-- settings -->
+      <div data-role="userProfile" class="hidden" id="Settings">
+        <header class="inner-header">
+          <div class="header-label">
+            <h2>Settings</h2>
+          </div>
+        </header>
+        <div class="container">
+          <div class="profilePhotoCon">
+            <img src="assets/images/Avatars - Default with Backdrop (1).png" alt="" class="profilePhoto">
+          </div>
+          <p class="userName"></p>
+          <div class="settings">
+            <div class="preference">
+              <div class="labelCon"><span>Disable task counter badge</span>
+                <p class="description">Turn off task counters for cleaner, distraction free work space.</p>
+              </div>
+              <div class="switch"><input type="checkbox" class="switchCheck" id="task counter badge"></div>
+            </div>
+            <div class="preference">
+              <div class="labelCon"><span>Keep Input Open After Adding Task</span>
+                <p class="description">Stay focused after submitting a task.</p>
+              </div>
+              <div class="switch"><input type="checkbox" class="switchCheck" id="auto close input"></div>
+            </div>
+            <div class="preference">
+              <div class="labelCon"><span>Mute Sound</span>
+                <p class="description">Turn off UI feedback like check sound.</p>
+              </div>
+              <div class="switch"><input type="checkbox" class="switchCheck" id="sound"></div>
+            </div>
+            <div class="preference">
+              <div class="labelCon"><span>Disable drag and drop</span>
+                <p class="description">Prevent tasks from being reordered by drag.</p>
+              </div>
+              <div class="switch"><input type="checkbox" class="switchCheck" id="drag and drop"></div>
+            </div>
+            <div class="preference">
+              <div class="labelCon"><span>Use Local date format</span>
+                <p class="description">Show date like "June 27, 2025". Tap or Hover on any task to see when
+                  it was created.
+                </p>
+              </div>
+              <div class="switch"><input type="checkbox" class="switchCheck" id="local date"></div>
+            </div>
+
+            <div class="preference">
+              <div class="labelCon"><span>Enable Haptic feedback.</span>
+                <p class="description">Vibrates slightly when tapping buttons. Works only on Android devices.</p>
+              </div>
+              <div class="switch"><input type="checkbox" class="switchCheck" checked id="enable haptic feed back"></div>
+
+            </div>
+            <div class="preference">
+              <div class="labelCon"><span>Confirm before deleting Tasks</span>
+                <p class="description">Show a prompt before permanently deleting a task.</p>
+              </div>
+
+              <div class="switch"><input type="checkbox" class="switchCheck" checked id="confirm before deleting tasks">
+              </div>
+            </div>
+            <div class="resetCon"><button id="resetProfile">Reset Profile</button></div>
+          </div>
+        </div>
+      </div>
+      <!-- modals -->
+      <div id="editPanelBlur" class="hidden"></div>
+      <div class="editModal">
+        <header class="inner-header">
+          <h2 style="margin: 0 auto;">Edit Task</h2>
+        </header>
+        <form action=""><input type="text" class="editInput" placeholder="Edit Your Task..."></form>
+        <div class="modalBtns"><button class="cancelBtn">Cancel</button><button class="doneBtn">Done</button></div>
+      </div>
+      <div class="confirmDel"><button class="cancelConfirm">Cancel</button><button class="delConfirm">Delete Task</div>
+      <div id="statusToast"></div>
+      <div id="welcomeToast">
+        <p id="wlcText">Welcome👋! Whats your name?</p>
+        <form action="" id="welcomeToastForm">
+          <input type="text" placeholder="what shall we call you?" name="username" id="userNameInput" />
+          <button class="enterBtn">Enter</button>
         </form>
       </div>
-
-      <ul id="pendingTasks" data-ul="one"></ul>
-      <div class="promptIllustration" data-illustration="one">
-        <figure>
-          <img src="assets/images/Fitz - Meditating at Home.png" alt="blush-illustration" />
-          <figcaption style="text-align: center">
-            Start your day with purpose, tap <br />the + button below to add
-            your first task.
-          </figcaption>
-        </figure>
+      <div id="resetProfileModal">
+        <h4>Confirm reset</h4>
+        <p>Are you sure you want to reset your profile?<br> This action cannot be undone.</p>
+        <div id="resetProfileBtnCon"><button class="resetBtn">Yes, Reset</button><button class="cancelResetBtn">No,
+            Cancel</button></div>
       </div>
-      <button id="customBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white"
-          class="size-1" width="26" height="26">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-        </svg>
-      </button>
-    </div>
-    <!-- completed section -->
-    <div id="completedTasksection" data-role="completed" class="notVisible">
-      <header class="inner-header">
-        <div class="header-label">
-          <h2>Completed Tasks</h2>
-        </div>
-      </header>
-      <ul id="completedT" data-ul="second"></ul>
-      <div class="promptIllustration" data-illustration="second">
-        <figure>
-          <img src="assets/images/Fitz - Rec Center.png" alt="blush-illustration" />
-          <figcaption>
-            Looks like you havent checked off any <br />
-            tasks Once you complete a task, it'll show up here
-          </figcaption>
-        </figure>
+      <!--  -->
+      <!-- Bottom nav -->
+      <div id="nav">
+        <button class="activeSec" data-btn="task">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+          </svg>
+          <p>All Tasks</p>
+          <span id="counterBadgeAll">0</span>
+        </button><button id="completedTask" data-btn="completed">
+          <svg width="22" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+          <p>Completed</p>
+          <span id="counterBadgeCompleted">0</span>
+        </button>
+        <button id="searchTask" data-btn="search">
+          <svg width="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+            <path fill-rule="evenodd"
+              d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z"
+              clip-rule="evenodd" />
+          </svg>
+          <p>Search</p>
+        </button>
+        <button data-btn="userProfile"><svg width="22" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+          <P>Settings</P>
+        </button>
       </div>
-    </div>
-    <!-- search section -->
-    <div data-role="search" id="searchsec" class="notVisible">
-      <header class="inner-header">
-        <div class="header-label">
-          <h2>Search Results</h2>
-        </div>
-      </header>
-      <form action="" id="searchForTasksForm">
-        <input type="search" id="searchInput" name="search" placeholder="Search" />
-        <div class="btn">
-          <button id="cancelBtn" class="hidden">Cancel</button>
-        </div>
-      </form>
-      <ul id="searchResults" data-ul="third"></ul>
-      <div class="promptIllustration" data-illustration="third">
-        <figure id="emptySearchInputPng">
-          <img src="assets/images/undraw_searching_no1g.svg" alt="undraw-illustration;" />
-          <figcaption>
-            Looking for something? start typing<br />to search your task.
-            Let's help you find it.
-          </figcaption>
-        </figure>
-        <figure id="noSearchResultsPng" class="hidden">
-          <img src="assets/images/undraw_not-found_6bgl.svg" alt="undraw-illustration" />
-          <figcaption>
-            Hmm... nothing matches<span id="inputValueDisplay"></span><br />
-            Try checking your spelling or searching<br />
-            with a diffrent keyboard.
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-    <!-- Bottom nav -->
-    <div id="nav">
-      <button class="activeSec" data-btn="task">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-          stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
-        </svg>
-        <p>All Tasks</p>
-      </button><button id="completedTask" data-btn="completed">
-        <svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-          stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-        </svg>
-        <p>Completed</p>
-      </button>
-      <button id="searchTask" data-btn="search">
-        <svg width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-          <path fill-rule="evenodd"
-            d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z"
-            clip-rule="evenodd" />
-        </svg>
-        <p>search</p>
-      </button>
-    </div>
+  </main>
   </section>
+
   <!-- innerpage-page section End -->
 
   <!-- link external script file -->

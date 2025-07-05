@@ -5,13 +5,28 @@ import {
   checkEmptyList,
   handleTasksInteraction,
   loadTaskTo,
+  closeModal,
+  removelement,
+  removeOverlayBlurBg,
+  showToast,
+  taskCounter,
+  completedtaskDisplay,
+  alltaskDisplay,
+  addOverlayBlurBg,
+  openConfirmReset,
+  closeConfirmReset,
+  closeConfirmDel
 } from "./helper.js";
-import { addTask } from "./task.js";
-import { saveToLocalStorage } from "./localstorage.js";
+import { addTask, delTask, updateTaskContent, Tasks } from "./task.js";
+import {  saveToLocalStorage } from "./localstorage.js";
 import { searchForTasks, handleTaskState } from "./helper.js";
-import ScrollReveal from "scrollreveal";
 import { animateLists } from "./helper.js";
-
+import { enableTypingEffect } from "./ui_Effects.js";
+import Sortable from "sortablejs";
+// import Sortable from "sortablejs";
+import { settings, savedSettings } from "./settings.js";
+import { savedUsername } from "./script.js";
+const confirmDel = document.querySelector(".confirmDel");
 const pendingLi = document.querySelector("#pendingTasks");
 const completedLi = document.querySelector("#completedT");
 let currentTheme = "light";
@@ -22,13 +37,41 @@ const promptIllustration = document.querySelectorAll(".promptIllustration");
 const searchResults = document.getElementById("searchResults");
 const getStartedBtn = document.querySelector("#getStartedBtn");
 const ToggleBtn = document.querySelectorAll(".toggle");
-const taskForm = document.querySelector("form");
+const taskForm = document.querySelector("#addTaskForm");
 const customBtn = document.getElementById("customBtn");
 const links = document.querySelectorAll("[data-btn]");
 const searchForTasksForm = document.getElementById("searchForTasksForm");
 const formCon = document.getElementById("addTaskContainer");
 const lists = document.querySelectorAll(".list");
+const editInput = document.querySelector(".editInput");
+const editModal = document.querySelector(".editModal");
+const editPanelBlur = document.querySelector("#editPanelBlur");
+const preference = document.querySelectorAll(".preference");
+const welcomeToastForm = document.getElementById("welcomeToastForm");
+const greeting = document.querySelector(".greeting");
+const welcomeToast = document.getElementById("welcomeToast");
+const userName = document.querySelector(".userName");
+const resetProfile = document.getElementById("resetProfile");
+const resetProfileModal = document.getElementById("resetProfileModal");
+let dragAndDrop = new Sortable(pendingLi, {
+  animation: 250,
+  ghostClass: "ghost",
+  swapThreshold: 0.65,
+  onEnd: function (evt) {
+    const movedTask = Tasks.splice(evt.oldIndex, 1)[0];
+    Tasks.splice(evt.newIndex, 0, movedTask);
+    saveToLocalStorage("tasks", Tasks);
+  },
+});
+const store = { currentListItem: null, listId: null, list: null };
+
 export {
+  resetProfileModal,
+  welcomeToast,
+  userName,
+  greeting,
+  store,
+  savedSettings,
   pendingLi,
   completedLi,
   currentTheme,
@@ -37,6 +80,11 @@ export {
   searchInput,
   promptIllustration,
   searchResults,
+  editInput,
+  editModal,
+  editPanelBlur,
+  confirmDel,
+  preference,
 };
 getStartedBtn.addEventListener("click", (e) => {
   let landing = e.target.closest("#landingPage");
@@ -45,6 +93,12 @@ getStartedBtn.addEventListener("click", (e) => {
   landing.addEventListener("animationend", () => {
     landing.style.display = "none";
   });
+  setTimeout(() => {
+    if (!savedUsername) {
+      welcomeToast?.classList.add("visible");
+      addOverlayBlurBg();
+    }
+  }, 400);
 });
 
 ToggleBtn.forEach((button) => {
@@ -78,8 +132,11 @@ taskForm.addEventListener("submit", (e) => {
     reset: false,
     mobile: true,
   });
-
+  if (!settings["auto close input"]) {
+    formCon.classList.remove("visible");
+  }
   promptIllustration[0].classList.add("hidden");
+  taskCounter();
 });
 
 const pages = document.querySelectorAll("[data-role]");
@@ -91,22 +148,18 @@ links.forEach((link) => {
     links.forEach((element) => {
       element.classList.remove("activeSec");
       pages.forEach((element) => {
-        element.classList.add("notVisible");
+        element.classList.add("hidden");
       });
     });
-    if (corresponding && correspondingUl.id === "completedT") {
-      correspondingUl.innerHTML = "";
+    if (corresponding) {
+      !correspondingUl ? null : (correspondingUl.innerHTML = "");
       loadTaskTo();
-      checkEmptyList(0);
-    } else if (corresponding && correspondingUl.id === "pendingTasks") {
-      correspondingUl.innerHTML = "";
-      loadTaskTo();
-      checkEmptyList(0);
-    } else if (corresponding && correspondingUl.id === "searchResults") {
       checkEmptyList(0);
     }
-    corresponding.classList.remove("notVisible");
+
+    corresponding.classList.remove("hidden");
     link.classList.add("activeSec");
+    if (settings["enable haptic feed back"]) navigator.vibrate(10);
   });
 });
 
@@ -144,16 +197,99 @@ searchResults.addEventListener("click", (e) => {
   checkEmptyList(0);
 });
 
-document.addEventListener("DOMContentLoaded", checkEmptyList);
-
 customBtn.addEventListener("click", () => {
   formCon.classList.add("visible");
   document.querySelector("#taskInput").focus();
 });
 
-// lists.forEach(element => {
-//   element.addEventListener("click",()=>{
-//     alert("hi")
-//   })
+editModal.addEventListener("click", (e) => {
+  let cancelBtn = e.target.closest(".cancelBtn");
+  let doneBtn = e.target.closest(".doneBtn");
+  if (cancelBtn) {
+    closeModal();
+    store.currentListItem = null;
+  } else if (doneBtn) {
+    store.currentListItem.textContent = editInput.value;
+    closeModal();
+    updateTaskContent(store.listId, editInput.value);
+    store.currentListItem = null;
+  }
+});
+
+// editPanelBlur.addEventListener("click", () => {
+//   closeModal();
+//   closeConfirmDel();
+//   // removeOverlayBlurBg();
 // });
-// document.addEventListener("")
+
+confirmDel.addEventListener("click", (e) => {
+  if (e.target.matches(".cancelConfirm")) {
+    closeConfirmDel();
+    removeOverlayBlurBg();
+    store.listId = null;
+  } else if (e.target.matches(".delConfirm")) {
+    delTask(store.listId);
+    setTimeout(() => {
+      removelement(store.list);
+    }, 500);
+    checkEmptyList();
+    closeConfirmDel();
+    removeOverlayBlurBg();
+    store.listId = null;
+  }
+});
+
+preference.forEach((el) => {
+  el.addEventListener("change", (e) => {
+    const id = e.target.id;
+    const switchCheckInput = e.target.matches(".switchCheck");
+    if (switchCheckInput) {
+      settings[`${id}`] === true
+        ? (settings[`${id}`] = false)
+        : (settings[`${id}`] = true);
+      saveToLocalStorage("settings", settings);
+    }
+    if (e.target.id === "task counter badge") {
+      alltaskDisplay.classList.toggle("hidden");
+      completedtaskDisplay.classList.toggle("hidden");
+      taskCounter();
+    } else if (e.target.id === "drag and drop") {
+      toggleDragAndDrop();
+    }
+    showToast("Preference saved");
+  });
+});
+
+export function toggleDragAndDrop() {
+  if (!settings["drag and drop"]) {
+    dragAndDrop.option("disabled", false);
+  } else if (settings["drag and drop"]) {
+    dragAndDrop.option("disabled", true);
+  }
+}
+
+welcomeToastForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const userNameInput = welcomeToastForm.elements.username;
+  let inputVal = userNameInput.value;
+  welcomeToast.classList.remove("visible");
+  saveToLocalStorage("username", inputVal);
+  userName.textContent = inputVal;
+  enableTypingEffect(`Welcome, ${inputVal}`);
+  removeOverlayBlurBg();
+});
+
+resetProfile.addEventListener("click", (e) => {
+  openConfirmReset();
+  addOverlayBlurBg()
+});
+
+resetProfileModal.addEventListener("click", (e) => {
+  if (e.target.matches(".resetBtn")) {
+    localStorage.clear();
+    location.reload();
+  }else if(e.target.matches(".cancelResetBtn")){
+    closeConfirmReset()
+    removeOverlayBlurBg()
+  }
+});

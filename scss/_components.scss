@@ -9,11 +9,6 @@
 .active {
   display: block;
 }
-.notVisible {
-  opacity: 0;
-  visibility: hidden;
-}
-
 
 .toggle {
   @include button(0, 0, unset);
@@ -48,14 +43,14 @@
   margin-inline-end: $spacingSm;
   font-size: 16px;
   &:focus {
-    outline: none;
-    border: 1px solid rgba(59, 130, 246, 0.4);
+    outline: 2px solid rgba(59, 130, 246, 0.4);
   }
 }
 
 .form {
   // margin-top: $spacingLg;
   @include flexDisplay(row, center, space-between);
+  // width: 100%;
 }
 
 #customBtn {
@@ -95,13 +90,24 @@
 
 #customBtn,
 #addTaskBtn,
-#getStartedBtn {
+#getStartedBtn,
+.cancelBtn,
+.doneBtn {
   &:active {
-    transform: scale(1.02);
+    transform: scale(0.9);
+    background-color: lighten($color: $btnBgColor, $amount: 6%);
   }
 }
 
-.slideFromTop {
-  animation: slideFromTop 1s ease-out forwards;
-  transition: all 0.5s ease-out;
+.fadeUp {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  visibility: visible;
+  user-select: auto;
+  pointer-events: all;
 }
+
+// .slideFromTop {
+//   animation: slideFromTop 1s ease-out forwards;
+//   transition: all 0.5s ease-out;
+// }
