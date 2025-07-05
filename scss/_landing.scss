@@ -9,7 +9,6 @@
   .logoCon {
     display: inline-flex;
     gap: 0.35rem;
-    // background-color: rgb(114, 139, 139);
   }
   .hero {
     @include flexDisplay();
@@ -30,7 +29,7 @@
 }
 footer {
   padding: 2rem;
-  font-size: .9rem;
+  font-size: 0.9rem;
   #landingPage.light & {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     color: lighten($color: $primaryColor, $amount: 10%);

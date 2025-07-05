@@ -1,4 +1,4 @@
-import "../scss/main.scss"
+import "../scss/main.scss";
 import "./event.js";
 import "./helper.js";
 import "./localstorage.js";
@@ -15,15 +15,9 @@ import {
   toggleDragAndDrop,
   userName,
   welcomeToast,
-  // dragAndDrop
 } from "./event.js";
 import { Tasks } from "./task.js";
-import {
-  checkEmptyList,
-  checkSound,
-  createTaskTemplate,
-  taskCounter,
-} from "./helper.js";
+import { checkEmptyList, createTaskTemplate, taskCounter } from "./helper.js";
 import "./ui_Effects.js";
 import { settings } from "./settings.js";
 import { enableTypingEffect } from "./ui_Effects.js";
@@ -34,7 +28,12 @@ const theme = getFromLocalstorage("theme");
 const savedprefferedSettings = getFromLocalstorage("settings");
 const switchInput = document.querySelectorAll(".switch input");
 //Apply saved key VALUES from local storage their corresponding elements
-landingPage.classList.add(theme);
+
+
+window.addEventListener("DOMContentLoaded", () => {
+
+
+  landingPage.classList.add(theme);
 innerPage.classList.add(theme);
 let moon = document.querySelectorAll(".toggle svg.moon");
 let sun = document.querySelectorAll(".toggle svg.sun");
@@ -71,8 +70,6 @@ switchInput.forEach((element) => {
     element.checked = true;
   }
 });
-
-window.addEventListener("DOMContentLoaded", () => {
   // checkSound(true)
   checkEmptyList(0);
   taskCounter();
@@ -86,6 +83,6 @@ window.addEventListener("DOMContentLoaded", () => {
   userName.textContent = savedUsername;
 });
 
-[confirmDel, welcomeToast, editModal, resetProfileModal].forEach((el) => {
-  el.removeAttribute("style");
-});
+// [confirmDel, welcomeToast, editModal, resetProfileModal].forEach((el) => {
+//   el.removeAttribute("style");
+// });

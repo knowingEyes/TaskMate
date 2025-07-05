@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="css/main.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TaskMate</title>
@@ -41,7 +40,9 @@
           <button id="getStartedBtn" type="button" class="">
             Get Started
           </button>
-          <blockquote id="quoteBlock"><p class="quote"></p></blockquote>
+          <blockquote id="quoteBlock">
+            <p class="quote"></p>
+          </blockquote>
           <figure class="figure left">
             <img src="assets/images/Dayflow3.png" alt="blush-illustration" />
             <figcaption>
@@ -239,23 +240,24 @@
       </div>
       <!-- modals -->
       <div id="editPanelBlur" class="hidden"></div>
-      <div class="editModal" style="visibility: hidden; opacity: 0;">
+      <div class="editModal">
         <header class="inner-header">
           <h2 style="margin: 0 auto;">Edit Task</h2>
         </header>
         <form action=""><input type="text" class="editInput" placeholder="Edit Your Task..."></form>
         <div class="modalBtns"><button class="cancelBtn">Cancel</button><button class="doneBtn">Done</button></div>
       </div>
-      <div class="confirmDel" style="visibility: hidden;"><button class="cancelConfirm">Cancel</button><button class="delConfirm">Delete Task</div>
+      <div class="confirmDel" style="visibility: hidden;"><button class="cancelConfirm">Cancel</button><button
+          class="delConfirm">Delete Task</div>
       <div id="statusToast"></div>
-      <div id="welcomeToast" style="visibility: hidden; opacity: 0;">
+      <div id="welcomeToast">
         <p id="wlcText">Welcome👋! Whats your name?</p>
         <form action="" id="welcomeToastForm">
           <input type="text" placeholder="what shall we call you?" name="username" id="userNameInput" />
           <button class="enterBtn">Enter</button>
         </form>
       </div>
-      <div id="resetProfileModal" style="visibility: hidden; opacity: 0;">
+      <div id="resetProfileModal">
         <h4>Confirm reset</h4>
         <p>Are you sure you want to reset your profile?<br> This action cannot be undone.</p>
         <div id="resetProfileBtnCon"><button class="resetBtn">Yes, Reset</button><button class="cancelResetBtn">No,
@@ -304,7 +306,7 @@
   <!-- innerpage-page section End -->
 
   <!-- link external script file -->
-  <script type="module" src="js/script.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
