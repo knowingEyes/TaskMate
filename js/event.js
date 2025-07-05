@@ -25,7 +25,7 @@ import { enableTypingEffect } from "./ui_Effects.js";
 import Sortable from "sortablejs";
 // import Sortable from "sortablejs";
 import { settings, savedSettings } from "./settings.js";
-import { savedUsername } from "./script.js";
+import { savedUsername } from "./main.js";
 const confirmDel = document.querySelector(".confirmDel");
 const pendingLi = document.querySelector("#pendingTasks");
 const completedLi = document.querySelector("#completedT");

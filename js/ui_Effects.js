@@ -1,6 +1,6 @@
 import { animate } from "./helper";
 import Typed from "typed.js";
-import { savedUsername } from "./script";
+import { savedUsername } from "./main";
 
 animate(".logoCon", { delay: 200, reset: false });
 animate("#title", { delay: 0 });

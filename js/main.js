@@ -1,3 +1,4 @@
+import "../scss/main.scss"
 import "./event.js";
 import "./helper.js";
 import "./localstorage.js";
