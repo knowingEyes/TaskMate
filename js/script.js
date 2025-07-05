@@ -5,18 +5,25 @@ import "./settings.js";
 import { getFromLocalstorage } from "./localstorage.js";
 import {
   completedLi,
+  confirmDel,
+  editModal,
   innerPage,
   landingPage,
   pendingLi,
+  resetProfileModal,
   toggleDragAndDrop,
   userName,
   welcomeToast,
   // dragAndDrop
 } from "./event.js";
 import { Tasks } from "./task.js";
-import { checkEmptyList, createTaskTemplate, taskCounter } from "./helper.js";
+import {
+  checkEmptyList,
+  checkSound,
+  createTaskTemplate,
+  taskCounter,
+} from "./helper.js";
 import "./ui_Effects.js";
-import { preference } from "./event.js";
 import { settings } from "./settings.js";
 import { enableTypingEffect } from "./ui_Effects.js";
 
@@ -38,6 +45,13 @@ if (theme === "light") {
   moon.forEach((element) => {
     element.classList.remove("hidden");
   });
+} else {
+  sun.forEach((element) => {
+    element.classList.remove("hidden");
+  });
+  moon.forEach((element) => {
+    element.classList.add("hidden");
+  });
 }
 
 //append list to initial location from localstorage on Dom-Refresh
@@ -58,6 +72,7 @@ switchInput.forEach((element) => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
+  // checkSound(true)
   checkEmptyList(0);
   taskCounter();
   if (savedUsername) {
@@ -66,6 +81,10 @@ window.addEventListener("DOMContentLoaded", () => {
     welcomeToast.classList.add("notVisible");
     innerPage.classList.remove("hidden");
   }
-   toggleDragAndDrop()
-   userName.textContent = savedUsername
+  toggleDragAndDrop();
+  userName.textContent = savedUsername;
+});
+
+[confirmDel, welcomeToast, editModal, resetProfileModal].forEach((el) => {
+  el.removeAttribute("style");
 });

@@ -15,10 +15,10 @@ import {
   addOverlayBlurBg,
   openConfirmReset,
   closeConfirmReset,
-  closeConfirmDel
+  closeConfirmDel,
 } from "./helper.js";
 import { addTask, delTask, updateTaskContent, Tasks } from "./task.js";
-import {  saveToLocalStorage } from "./localstorage.js";
+import { saveToLocalStorage } from "./localstorage.js";
 import { searchForTasks, handleTaskState } from "./helper.js";
 import { animateLists } from "./helper.js";
 import { enableTypingEffect } from "./ui_Effects.js";
@@ -281,15 +281,15 @@ welcomeToastForm?.addEventListener("submit", (e) => {
 
 resetProfile.addEventListener("click", (e) => {
   openConfirmReset();
-  addOverlayBlurBg()
+  addOverlayBlurBg();
 });
 
 resetProfileModal.addEventListener("click", (e) => {
   if (e.target.matches(".resetBtn")) {
     localStorage.clear();
     location.reload();
-  }else if(e.target.matches(".cancelResetBtn")){
-    closeConfirmReset()
-    removeOverlayBlurBg()
+  } else if (e.target.matches(".cancelResetBtn")) {
+    closeConfirmReset();
+    removeOverlayBlurBg();
   }
 });

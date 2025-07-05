@@ -14,11 +14,10 @@ import {
   confirmDel,
   landingPage,
   innerPage,
-  resetProfileModal
+  resetProfileModal,
 } from "./event.js";
 import ScrollReveal from "scrollreveal";
 import { settings } from "./settings.js";
-
 
 export function TransitionToInnerPage(e) {
   e.classList.add("fadeOut");
@@ -284,7 +283,7 @@ export function taskCounter() {
   let alltaskDisplay = document.getElementById("counterBadgeAll");
   let completedtaskscount = 0;
   let alltaskscount = 0;
-  if (!settings["task counter badge"])
+  if (!settings["task counter badge"]) {
     for (let i = 0; i < Tasks.length; i++) {
       if (Tasks[i]["completed"]) {
         completedtaskscount++;
@@ -294,8 +293,5 @@ export function taskCounter() {
       completedtaskDisplay.textContent = completedtaskscount;
       alltaskDisplay.textContent = alltaskscount;
     }
-  else {
-    completedtaskDisplay.classList.add("hidden");
-    alltaskDisplay.classList.add("hidden");
   }
 }
