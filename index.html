@@ -6,8 +6,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TaskMate</title>
-  <script type="module" crossorigin src="/TaskMate/assets/index-BtyHIj5p.js"></script>
-  <link rel="stylesheet" crossorigin href="/TaskMate/assets/index-x3m_BXat.css">
+  <script type="module" crossorigin src="/TaskMate/assets/index--RGW3bul.js"></script>
+  <link rel="stylesheet" crossorigin href="/TaskMate/assets/index-rO5860uo.css">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
             </svg>
             <h3 style="display: inline-block" class="logo-title">TaskMate</h3>
           </div>
-          <button class="toggle">
+          <button class="toggle" aria-label="Toggle light/ dark theme">
             <svg width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="size-6 moon">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -138,7 +138,7 @@
             <img src="/TaskMate/assets/Fitz%20-%20Rec%20Center-B3870n7d.png" alt="blush-illustration" />
             <figcaption>
               Looks like you havent checked <br> off any
-              tasks once you complete <br> a task, it'll show up here
+              tasks once you complete <br> a task, it'll show up here.
             </figcaption>
           </figure>
         </div>
@@ -254,9 +254,9 @@
           class="delConfirm">Delete Task</div>
       <div id="statusToast"></div>
       <div id="welcomeToast">
-        <p id="wlcText">👋 Welcome! Whats your name?</p>
+        <p id="wlcText">👋 Welcome! Let's keep it simple.</p>
         <form action="" id="welcomeToastForm">
-          <input type="text" placeholder="what shall we call you?" name="username" id="userNameInput" />
+          <input type="text" placeholder="what shall we call you?" name="username" id="userNameInput" maxlength="8"/>
           <button class="enterBtn">Enter</button>
         </form>
       </div>
