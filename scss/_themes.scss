@@ -7,6 +7,9 @@
 
     #landing-header {
       @include headerTheme($primaryHeadBgColor, $boxShadowLight);
+        button {
+      color: #dc2626
+    }
     }
   }
 

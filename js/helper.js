@@ -101,6 +101,7 @@ export function handleTaskAction(e) {
   const listItem = e.target.closest(".listItemCon")?.querySelector(".listItem");
   const listId = e.target.closest(".list")?.dataset.id;
   const list = e.target.closest(".list");
+
   if (delbtn) {
     if (settings["confirm before deleting tasks"]) {
       store.list = list;
