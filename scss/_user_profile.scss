@@ -15,10 +15,11 @@
   margin-bottom: 1.3rem;
 }
 .settings {
-  margin: 0 1rem;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 1rem;
   .preference {
     @include flexDisplay(row, center, space-between);
-    padding: 1rem;
     margin: 0.7rem 0;
     border-radius: $boderRadiusSm;
     gap: 1.5rem;

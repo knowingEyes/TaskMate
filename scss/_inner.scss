@@ -61,6 +61,8 @@
 ul {
   margin-top: 1rem;
   padding-bottom: 10rem;
+  max-width: 1024px;
+  margin: 0 auto;
   li {
     display: block;
     position: relative;
@@ -242,18 +244,19 @@ ul {
 }
 
 .confirmDel {
-  background-color: transparent;
+  max-width: 1024px;
   @include flexDisplay(column-reverse, flex-end, flex-end);
   row-gap: 0.5rem;
   z-index: 99;
   position: fixed;
   width: 100%;
   bottom: 0;
+  left: 50%;
   padding-bottom: 0.55rem;
-  transform: translateY(90%);
+  transform: translate(-50%,100%);
   transition: transform 0.4s ease-out;
   &.fadeInBottom {
-    transform: translateY(0);
+    transform: translate(-50%,0);
   }
   .cancelConfirm,
   .delConfirm {
@@ -337,6 +340,7 @@ ul {
     }
   }
 }
+
 #resetProfileModal {
   width: min(90%, 400px);
   position: fixed;
@@ -364,6 +368,7 @@ ul {
       transform: scale(0.9);
     }
   }
+
   #resetProfileBtnCon {
     @include flexDisplay("row", center, "center");
     .resetBtn {
@@ -390,5 +395,3 @@ ul {
     font-size: 0.9rem;
   }
 }
-
-

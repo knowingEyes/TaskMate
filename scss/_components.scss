@@ -48,9 +48,10 @@
 }
 
 .form {
-  // margin-top: $spacingLg;
+  
   @include flexDisplay(row, center, space-between);
-  // width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 #customBtn {
@@ -107,7 +108,4 @@
   pointer-events: all;
 }
 
-// .slideFromTop {
-//   animation: slideFromTop 1s ease-out forwards;
-//   transition: all 0.5s ease-out;
-// }
+

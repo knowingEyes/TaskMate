@@ -17,11 +17,11 @@
   color: $color;
 }
 
-@mixin flexDisplay($flexDir: column, $align: center, $justify: center) {
+@mixin flexDisplay($flexDir: column, $align: center, $justify: center, $padding: 1rem) {
   display: flex;
   justify-content: $justify;
   align-items: $align;
-  padding: 1rem;
+  padding: $padding;
   flex-direction: $flexDir;
   justify-content: $justify;
 }
